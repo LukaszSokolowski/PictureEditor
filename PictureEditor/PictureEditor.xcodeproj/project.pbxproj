@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		215BDC7928FA095800E460B4 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 215BDC7828FA095800E460B4 /* MainView.swift */; };
+		215BDC7B28FA138B00E460B4 /* ImageInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 215BDC7A28FA138B00E460B4 /* ImageInfoView.swift */; };
+		215BDC7E28FAE2A100E460B4 /* VImageWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 215BDC7D28FAE2A100E460B4 /* VImageWrapper.swift */; };
+		215BDC8028FAE48500E460B4 /* Notes in Resources */ = {isa = PBXBuildFile; fileRef = 215BDC7F28FAE48500E460B4 /* Notes */; };
 		21B50BF828F9FFF9001DB5B9 /* PictureEditorApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21B50BF728F9FFF9001DB5B9 /* PictureEditorApp.swift */; };
 		21B50BFA28F9FFF9001DB5B9 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21B50BF928F9FFF9001DB5B9 /* ContentView.swift */; };
 		21B50BFC28F9FFFA001DB5B9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 21B50BFB28F9FFFA001DB5B9 /* Assets.xcassets */; };
@@ -36,6 +40,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		215BDC7828FA095800E460B4 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
+		215BDC7A28FA138B00E460B4 /* ImageInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageInfoView.swift; sourceTree = "<group>"; };
+		215BDC7D28FAE2A100E460B4 /* VImageWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VImageWrapper.swift; sourceTree = "<group>"; };
+		215BDC7F28FAE48500E460B4 /* Notes */ = {isa = PBXFileReference; lastKnownFileType = text; path = Notes; sourceTree = "<group>"; };
 		21B50BF428F9FFF9001DB5B9 /* PictureEditor.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PictureEditor.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		21B50BF728F9FFF9001DB5B9 /* PictureEditorApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PictureEditorApp.swift; sourceTree = "<group>"; };
 		21B50BF928F9FFF9001DB5B9 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -75,6 +83,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		215BDC7728FA091A00E460B4 /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				21B50C0028F9FFFA001DB5B9 /* Persistence.swift */,
+				21B50BF928F9FFF9001DB5B9 /* ContentView.swift */,
+				21B50C0228F9FFFA001DB5B9 /* PictureEditor.xcdatamodeld */,
+			);
+			path = CoreData;
+			sourceTree = "<group>";
+		};
+		215BDC7C28FAE26E00E460B4 /* ImageProcessing */ = {
+			isa = PBXGroup;
+			children = (
+				215BDC7D28FAE2A100E460B4 /* VImageWrapper.swift */,
+			);
+			path = ImageProcessing;
+			sourceTree = "<group>";
+		};
 		21B50BEB28F9FFF9001DB5B9 = {
 			isa = PBXGroup;
 			children = (
@@ -98,12 +124,14 @@
 		21B50BF628F9FFF9001DB5B9 /* PictureEditor */ = {
 			isa = PBXGroup;
 			children = (
+				215BDC7C28FAE26E00E460B4 /* ImageProcessing */,
 				21B50BF728F9FFF9001DB5B9 /* PictureEditorApp.swift */,
-				21B50BF928F9FFF9001DB5B9 /* ContentView.swift */,
-				21B50BFB28F9FFFA001DB5B9 /* Assets.xcassets */,
-				21B50C0028F9FFFA001DB5B9 /* Persistence.swift */,
-				21B50C0228F9FFFA001DB5B9 /* PictureEditor.xcdatamodeld */,
+				215BDC7828FA095800E460B4 /* MainView.swift */,
+				215BDC7A28FA138B00E460B4 /* ImageInfoView.swift */,
 				21B50BFD28F9FFFA001DB5B9 /* Preview Content */,
+				215BDC7728FA091A00E460B4 /* CoreData */,
+				21B50BFB28F9FFFA001DB5B9 /* Assets.xcassets */,
+				215BDC7F28FAE48500E460B4 /* Notes */,
 			);
 			path = PictureEditor;
 			sourceTree = "<group>";
@@ -237,6 +265,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				215BDC8028FAE48500E460B4 /* Notes in Resources */,
 				21B50BFF28F9FFFA001DB5B9 /* Preview Assets.xcassets in Resources */,
 				21B50BFC28F9FFFA001DB5B9 /* Assets.xcassets in Resources */,
 			);
@@ -265,7 +294,10 @@
 			files = (
 				21B50C0128F9FFFA001DB5B9 /* Persistence.swift in Sources */,
 				21B50C0428F9FFFA001DB5B9 /* PictureEditor.xcdatamodeld in Sources */,
+				215BDC7B28FA138B00E460B4 /* ImageInfoView.swift in Sources */,
 				21B50BFA28F9FFF9001DB5B9 /* ContentView.swift in Sources */,
+				215BDC7928FA095800E460B4 /* MainView.swift in Sources */,
+				215BDC7E28FAE2A100E460B4 /* VImageWrapper.swift in Sources */,
 				21B50BF828F9FFF9001DB5B9 /* PictureEditorApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

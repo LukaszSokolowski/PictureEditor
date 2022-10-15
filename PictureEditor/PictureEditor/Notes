@@ -1,0 +1,10 @@
+-------------------ACCELERATE-------------------
+
+vImage is an image processing library from Accelerate framework
+--------------------------------------
+
+To process an image with this library we use vImage_Buffer, also user can easly convert from CGImage to this type.
+Most of UIImage have cgImage property, so there is easy way to convert into the vImage_Buffer:
+let image = UIImage("image.jpg")
+let imageBuffer = try? vImage_Buffer(cgImage: image.cgImage)
+--------------------------------------
