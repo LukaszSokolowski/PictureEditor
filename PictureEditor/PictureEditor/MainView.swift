@@ -30,7 +30,7 @@ struct MainView: View {
                 }
             }
             Button("Process image") {
-                processedImage = process(image: originalImage)
+                processedImage = processImageWith(processMethod: .reflectImage)
             }
             .foregroundColor(Color.black)
             .buttonStyle(.bordered)
@@ -39,12 +39,10 @@ struct MainView: View {
         }
     }
     
-    private func process(image: UIImage) -> UIImage {
-        let imageWrapper = VImageWrapper(uiImage: image)
-        if let image = imageWrapper.processedImage {
-            return image
-        }
-        return UIImage()
+    private func processImageWith(processMethod: ImageProcessMethod) -> UIImage {
+        var imageWrapper = VImageWrapper(uiImage: originalImage)
+        imageWrapper.processImageWith(processMethod: processMethod)
+        return imageWrapper.processedImage ?? UIImage()
     }
 }
 

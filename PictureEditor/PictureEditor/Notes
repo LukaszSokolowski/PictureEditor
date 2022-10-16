@@ -8,3 +8,9 @@ Most of UIImage have cgImage property, so there is easy way to convert into the 
 let image = UIImage("image.jpg")
 let imageBuffer = try? vImage_Buffer(cgImage: image.cgImage)
 --------------------------------------
+
+To convert from vImage_Buffer to UIImage we need to go through few steps:
+
+let originalCgImage = uiImage.cgImage, //Orignal CGImage from UIImage
+let format = vImage_CGImageFormat(cgImage: originalCgImage) //Create vImage_CGImageFormat based on orignal CGIMage
+let cgImage = try? buffer.createCGImage(format: format)

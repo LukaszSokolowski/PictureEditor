@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		213851AA28FC78F90091BE94 /* HistogramLevels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 213851A928FC78F90091BE94 /* HistogramLevels.swift */; };
+		213851AC28FC790C0091BE94 /* WrappedImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 213851AB28FC790C0091BE94 /* WrappedImage.swift */; };
+		213851AE28FC79220091BE94 /* ImageProcessMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 213851AD28FC79220091BE94 /* ImageProcessMethod.swift */; };
 		215BDC7928FA095800E460B4 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 215BDC7828FA095800E460B4 /* MainView.swift */; };
 		215BDC7B28FA138B00E460B4 /* ImageInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 215BDC7A28FA138B00E460B4 /* ImageInfoView.swift */; };
 		215BDC7E28FAE2A100E460B4 /* VImageWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 215BDC7D28FAE2A100E460B4 /* VImageWrapper.swift */; };
@@ -40,6 +43,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		213851A928FC78F90091BE94 /* HistogramLevels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistogramLevels.swift; sourceTree = "<group>"; };
+		213851AB28FC790C0091BE94 /* WrappedImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WrappedImage.swift; sourceTree = "<group>"; };
+		213851AD28FC79220091BE94 /* ImageProcessMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageProcessMethod.swift; sourceTree = "<group>"; };
 		215BDC7828FA095800E460B4 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		215BDC7A28FA138B00E460B4 /* ImageInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageInfoView.swift; sourceTree = "<group>"; };
 		215BDC7D28FAE2A100E460B4 /* VImageWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VImageWrapper.swift; sourceTree = "<group>"; };
@@ -97,6 +103,9 @@
 			isa = PBXGroup;
 			children = (
 				215BDC7D28FAE2A100E460B4 /* VImageWrapper.swift */,
+				213851A928FC78F90091BE94 /* HistogramLevels.swift */,
+				213851AB28FC790C0091BE94 /* WrappedImage.swift */,
+				213851AD28FC79220091BE94 /* ImageProcessMethod.swift */,
 			);
 			path = ImageProcessing;
 			sourceTree = "<group>";
@@ -292,7 +301,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				213851AC28FC790C0091BE94 /* WrappedImage.swift in Sources */,
 				21B50C0128F9FFFA001DB5B9 /* Persistence.swift in Sources */,
+				213851AE28FC79220091BE94 /* ImageProcessMethod.swift in Sources */,
+				213851AA28FC78F90091BE94 /* HistogramLevels.swift in Sources */,
 				21B50C0428F9FFFA001DB5B9 /* PictureEditor.xcdatamodeld in Sources */,
 				215BDC7B28FA138B00E460B4 /* ImageInfoView.swift in Sources */,
 				21B50BFA28F9FFF9001DB5B9 /* ContentView.swift in Sources */,
