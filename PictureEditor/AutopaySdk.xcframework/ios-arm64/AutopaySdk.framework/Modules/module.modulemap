@@ -1,0 +1,11 @@
+framework module AutopaySdk {
+  umbrella header "AutopaySdk.h"
+
+  export *
+  module * { export * }
+}
+
+module AutopaySdk.Swift {
+  header "AutopaySdk-Swift.h"
+  requires objc
+}

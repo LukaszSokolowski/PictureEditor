@@ -1,0 +1,6 @@
+framework module Pods_PictureEditor_PictureEditorUITests {
+  umbrella header "Pods-PictureEditor-PictureEditorUITests-umbrella.h"
+
+  export *
+  module * { export * }
+}

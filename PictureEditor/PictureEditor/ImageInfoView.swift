@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct ImageInfoView: View {
-    
     let firstLabelText: String
     let secondLabelText: String
     let thirdLabelText: String
