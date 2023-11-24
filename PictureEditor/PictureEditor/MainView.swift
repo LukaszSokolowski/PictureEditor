@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-
 struct MainView: View {
     @State var originalImage = UIImage(imageLiteralResourceName: "RockyTheDoge")
     @State var processedImage: UIImage?
@@ -19,14 +18,14 @@ struct MainView: View {
                     Image(uiImage: originalImage)
                         .resizable()
                         .aspectRatio(contentMode: .fit)
-                        .padding(Padding.small)
+                        .padding(Padding.small.rawValue)
                 }
                 VStack {
                     Text("Processed image")
                     Image(uiImage: processedImage ?? originalImage)
                         .resizable()
                         .aspectRatio(contentMode: .fit)
-                        .padding(Padding.small)
+                        .padding(Padding.small.rawValue)
                 }
             }
             Button("Equalize histogram") {
@@ -35,14 +34,14 @@ struct MainView: View {
             .foregroundColor(Color.black)
             .buttonStyle(.bordered)
             .shadow(radius: UIConstants.shadowRadius)
-            .padding(EdgeInsets(top: Padding.normal, leading: .zero, bottom: .zero, trailing: .zero))
+            .padding(EdgeInsets(top: Padding.normal.rawValue, leading: .zero, bottom: .zero, trailing: .zero))
             Button("Reflect image") {
                 processedImage = processImageWith(processMethod: .reflectImage)
             }
             .foregroundColor(Color.black)
             .buttonStyle(.bordered)
             .shadow(radius: UIConstants.shadowRadius)
-            .padding(EdgeInsets(top: Padding.normal, leading: .zero, bottom: .zero, trailing: .zero))
+            .padding(EdgeInsets(top: Padding.normal.rawValue, leading: .zero, bottom: .zero, trailing: .zero))
         }
     }
     
