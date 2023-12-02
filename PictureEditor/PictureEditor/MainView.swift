@@ -6,10 +6,27 @@
 //
 
 import SwiftUI
+
 struct MainView: View {
     @State var originalImage = UIImage(imageLiteralResourceName: "RockyTheDoge")
     @State var processedImage: UIImage?
-       
+    @GestureState private var isDetectingLongPress = false
+    @State private var completedLongPress = false
+    
+    var longPress: some Gesture {
+        LongPressGesture(minimumDuration: 1)
+            .updating($isDetectingLongPress) { currentState, gestureState, _ in
+                gestureState = currentState
+            }
+            .onEnded { finished in
+                self.completedLongPress = finished
+            }
+    }
+    
+    var getImage: UIImage {
+        isDetectingLongPress ? originalImage : completedLongPress ? processedImage ?? originalImage : processedImage ?? originalImage
+    }
+    
     var body: some View {
         VStack {
             VStack(spacing: 64.0) {
@@ -22,10 +39,11 @@ struct MainView: View {
                 }
                 VStack {
                     Text("Processed image")
-                    Image(uiImage: processedImage ?? originalImage)
+                    Image(uiImage: getImage)
                         .resizable()
                         .aspectRatio(contentMode: .fit)
                         .padding(Padding.small.rawValue)
+                        .gesture(longPress)
                 }
             }
             Button("Equalize histogram") {
@@ -46,7 +64,7 @@ struct MainView: View {
     }
     
     private func processImageWith(processMethod: ImageProcessMethod) -> UIImage {
-        var imageWrapper = VImageWrapper(uiImage: originalImage)
+        var imageWrapper = VImageWrapper(uiImage: processedImage ?? originalImage)
         imageWrapper.processImageWith(processMethod: processMethod)
         return imageWrapper.processedImage ?? UIImage()
     }
