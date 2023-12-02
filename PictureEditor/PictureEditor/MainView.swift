@@ -19,12 +19,12 @@ struct MainView: View {
                 gestureState = currentState
             }
             .onEnded { finished in
-                self.completedLongPress = finished
+                completedLongPress = finished
             }
     }
     
     var getImage: UIImage {
-        isDetectingLongPress ? originalImage : completedLongPress ? processedImage ?? originalImage : processedImage ?? originalImage
+        isDetectingLongPress ? originalImage : processedImage ?? originalImage
     }
     
     var body: some View {
