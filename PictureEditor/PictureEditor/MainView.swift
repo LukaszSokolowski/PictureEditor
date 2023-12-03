@@ -42,10 +42,10 @@ struct MainView: View {
                 Spacer()
                 PhotoPickerView(selection: $imageSelection)
                     .onChange(of: imageSelection) { selectedItem in
-                    if let selectedItem {
-                        handleTransferableDataFor(selectedItem)
-                    }
-                }.padding(Padding.normal.rawValue)
+                        if let selectedItem {
+                            handleTransferableDataFor(selectedItem)
+                        }
+                    }.padding(Padding.normal.rawValue)
             }
             VStack {
                 Text("Processed image")
@@ -53,7 +53,7 @@ struct MainView: View {
                     TipView(originalImageTip, arrowEdge: .bottom)
                         .padding(.horizontal, Padding.small.rawValue)
                 } else {
-                    let _ = print("Update your OS or buy new device to see awesome tip")
+                    let _ = print("Update your OS or buy new device to see awesome tips!")
                 }
                 Image(uiImage: bottomContainerImage)
                     .resizable()
@@ -67,7 +67,7 @@ struct MainView: View {
                         .datastoreLocation(.applicationDefault)
                     ])
                 } else {
-                    let _ = print("Update your OS or buy new device to see awesome tip")
+                    let _ = print("Update your OS or buy new device to see awesome tips!")
                 }
             }
             Button("Equalize histogram") {
