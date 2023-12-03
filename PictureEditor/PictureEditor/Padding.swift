@@ -10,4 +10,5 @@ import Foundation
 enum Padding: CGFloat {
     case small = 8.0
     case normal = 16.0
+    case big = 32.0
 }

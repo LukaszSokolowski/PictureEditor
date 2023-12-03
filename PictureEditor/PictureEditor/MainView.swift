@@ -36,7 +36,28 @@ struct MainView: View {
     
     var body: some View {
         VStack {
-            VStack(spacing: 64.0) {
+            HStack {
+                Spacer()
+                PhotoPicker(selection: $imageSelection).onChange(of: imageSelection) { selectedItem in
+                    if let selectedItem {
+                        selectedItem.loadTransferable(type: Data.self) { result in
+                            switch result {
+                            case .success(let imageData):
+                                if let imageData {
+                                    self.imageData = imageData
+                                    self.originalImage = UIImage(data: imageData)!
+                                    self.processedImage = originalImage
+                                } else {
+                                    print("No supported content type found.")
+                                }
+                            case .failure(let error):
+                                fatalError(error.localizedDescription)
+                            }
+                        }
+                    }
+                }.padding(Padding.normal.rawValue)
+            }
+            VStack(spacing: 32.0) {
                 VStack {
                     Text("Original image")
                     Image(uiImage: originalImage)
@@ -67,24 +88,7 @@ struct MainView: View {
             .buttonStyle(.bordered)
             .shadow(radius: UIConstants.shadowRadius)
             .padding(EdgeInsets(top: Padding.normal.rawValue, leading: .zero, bottom: .zero, trailing: .zero))
-            PhotoPicker(selection: $imageSelection).onChange(of: imageSelection) { selectedItem in
-                if let selectedItem {
-                    selectedItem.loadTransferable(type: Data.self) { result in
-                        switch result {
-                        case .success(let imageData):
-                            if let imageData {
-                                self.imageData = imageData
-                                self.originalImage = UIImage(data: imageData)!
-                                self.processedImage = originalImage
-                            } else {
-                                print("No supported content type found.")
-                            }
-                        case .failure(let error):
-                            fatalError(error.localizedDescription)
-                        }
-                    }
-                }
-            }
+            
         }
     }
     

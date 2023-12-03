@@ -16,14 +16,13 @@ struct PhotoPicker: View {
     }
     
     var body: some View {
-        let _ = print("$pickerItemSelection \(pickerItemSelection)")
         PhotosPicker(selection: $pickerItemSelection,
                      matching: .images,
                      photoLibrary: .shared()) {
-            Image(systemName: "pencil.circle.fill")
-                .symbolRenderingMode(.multicolor)
-                .font(.system(size: 30))
-                .foregroundColor(.accentColor)
+            Image(systemName: "plus.circle")
+                .symbolRenderingMode(.monochrome)
+                .font(.system(size: 32))
+                .foregroundColor(.black)
         }
     }
 }
