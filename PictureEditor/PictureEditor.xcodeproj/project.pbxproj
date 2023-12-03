@@ -191,6 +191,7 @@
 		21B50BF628F9FFF9001DB5B9 /* PictureEditor */ = {
 			isa = PBXGroup;
 			children = (
+				21C7D5492B1CA5A9002FB63F /* PhotoPicker */,
 				219267C52B100D620089D273 /* Shared */,
 				219267C42B100D200089D273 /* Model */,
 				21B50BF728F9FFF9001DB5B9 /* PictureEditorApp.swift */,
@@ -228,6 +229,13 @@
 				21B50C1928F9FFFA001DB5B9 /* PictureEditorUITestsLaunchTests.swift */,
 			);
 			path = PictureEditorUITests;
+			sourceTree = "<group>";
+		};
+		21C7D5492B1CA5A9002FB63F /* PhotoPicker */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = PhotoPicker;
 			sourceTree = "<group>";
 		};
 		829BDABEB51D730FE2DB7D46 /* Pods */ = {
