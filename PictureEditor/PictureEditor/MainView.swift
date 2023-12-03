@@ -7,7 +7,7 @@
 
 import SwiftUI
 import PhotosUI
-import CoreTransferable
+import TipKit
 
 struct MainView: View {
     @GestureState private var isDetectingLongPress = false
@@ -34,44 +34,40 @@ struct MainView: View {
         isDetectingLongPress ? originalImage : processedImage ?? originalImage
     }
     
+    var originalImageTip = OriginalImageTip()
+    
     var body: some View {
         VStack {
             HStack {
                 Spacer()
-                PhotoPicker(selection: $imageSelection).onChange(of: imageSelection) { selectedItem in
+                PhotoPickerView(selection: $imageSelection)
+                    .onChange(of: imageSelection) { selectedItem in
                     if let selectedItem {
-                        selectedItem.loadTransferable(type: Data.self) { result in
-                            switch result {
-                            case .success(let imageData):
-                                if let imageData {
-                                    self.imageData = imageData
-                                    self.originalImage = UIImage(data: imageData)!
-                                    self.processedImage = originalImage
-                                } else {
-                                    print("No supported content type found.")
-                                }
-                            case .failure(let error):
-                                fatalError(error.localizedDescription)
-                            }
-                        }
+                        handleTransferableDataFor(selectedItem)
                     }
                 }.padding(Padding.normal.rawValue)
             }
-            VStack(spacing: 32.0) {
-                VStack {
-                    Text("Original image")
-                    Image(uiImage: originalImage)
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
-                        .padding(Padding.small.rawValue)
+            VStack {
+                Text("Processed image")
+                if #available(iOS 17.0, *) {
+                    TipView(originalImageTip, arrowEdge: .bottom)
+                        .padding(.horizontal, Padding.small.rawValue)
+                } else {
+                    let _ = print("Update your OS or buy new device to see awesome tip")
                 }
-                VStack {
-                    Text("Processed image")
-                    Image(uiImage: bottomContainerImage)
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
-                        .padding(Padding.small.rawValue)
-                        .gesture(longPress)
+                Image(uiImage: bottomContainerImage)
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .padding(Padding.small.rawValue)
+                    .gesture(longPress)
+            }.task {
+                if #available(iOS 17.0, *) {
+                    try? Tips.configure([
+                        .displayFrequency(.immediate),
+                        .datastoreLocation(.applicationDefault)
+                    ])
+                } else {
+                    let _ = print("Update your OS or buy new device to see awesome tip")
                 }
             }
             Button("Equalize histogram") {
@@ -88,11 +84,31 @@ struct MainView: View {
             .buttonStyle(.bordered)
             .shadow(radius: UIConstants.shadowRadius)
             .padding(EdgeInsets(top: Padding.normal.rawValue, leading: .zero, bottom: .zero, trailing: .zero))
+            Spacer()
             
         }
     }
+}
+
+private extension MainView {
+    func handleTransferableDataFor(_ item: PhotosPickerItem) {
+        item.loadTransferable(type: Data.self) { result in
+            switch result {
+            case .success(let imageData):
+                if let imageData {
+                    self.imageData = imageData
+                    self.originalImage = UIImage(data: imageData)!
+                    self.processedImage = originalImage
+                } else {
+                    print("No supported content type found.")
+                }
+            case .failure(let error):
+                fatalError(error.localizedDescription)
+            }
+        }
+    }
     
-    private func processImageWith(processMethod: ImageProcessMethod) -> UIImage {
+    func processImageWith(processMethod: ImageProcessMethod) -> UIImage {
         var imageWrapper = VImageWrapper(uiImage: processedImage ?? originalImage)
         imageWrapper.processImageWith(processMethod: processMethod)
         return imageWrapper.processedImage ?? UIImage()

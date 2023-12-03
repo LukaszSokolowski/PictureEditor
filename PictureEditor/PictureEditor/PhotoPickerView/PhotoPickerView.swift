@@ -8,7 +8,7 @@
 import SwiftUI
 import PhotosUI
 
-struct PhotoPicker: View {
+struct PhotoPickerView: View {
     @Binding var pickerItemSelection: PhotosPickerItem?
     
     init(selection: Binding<PhotosPickerItem?>) {
