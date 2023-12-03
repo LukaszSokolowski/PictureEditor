@@ -11,6 +11,18 @@ import TipKit
 struct OriginalImageTip: Tip {
     var id: String = UUID().uuidString
     
+    @available(iOS 17.0, *)
+    @Parameter static var orignalImageChanged: Bool = false
+    
+    @available(iOS 17.0, *)
+    var rules: [Rule] {
+        [
+            #Rule(Self.$orignalImageChanged) {
+                $0 == true
+            }
+        ]
+    }
+    
     var title: Text {
         Text("Tap and hold to see your orignal photo")
     }

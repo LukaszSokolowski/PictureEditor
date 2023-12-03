@@ -27,6 +27,9 @@ struct MainView: View {
             }
             .onEnded { finished in
                 completedLongPress = finished
+                if #available(iOS 17.0, *) {
+                    originalImageTip.invalidate(reason: .actionPerformed)
+                }
             }
     }
     
@@ -50,10 +53,8 @@ struct MainView: View {
             VStack {
                 Text("Processed image")
                 if #available(iOS 17.0, *) {
-                    TipView(originalImageTip, arrowEdge: .bottom)
+                    TipView(originalImageTip, arrowEdge: .bottom).tipBackground(.teal.opacity(0.2))
                         .padding(.horizontal, Padding.small.rawValue)
-                } else {
-                    let _ = print("Update your OS or buy new device to see awesome tips!")
                 }
                 Image(uiImage: bottomContainerImage)
                     .resizable()
@@ -66,12 +67,13 @@ struct MainView: View {
                         .displayFrequency(.immediate),
                         .datastoreLocation(.applicationDefault)
                     ])
-                } else {
-                    let _ = print("Update your OS or buy new device to see awesome tips!")
                 }
             }
             Button("Equalize histogram") {
                 processedImage = processImageWith(processMethod: .equalizeHistogram)
+                if #available(iOS 17.0, *) {
+                    OriginalImageTip.orignalImageChanged.toggle()
+                }
             }
             .foregroundColor(Color.black)
             .buttonStyle(.bordered)
@@ -79,13 +81,15 @@ struct MainView: View {
             .padding(EdgeInsets(top: Padding.normal.rawValue, leading: .zero, bottom: .zero, trailing: .zero))
             Button("Reflect image") {
                 processedImage = processImageWith(processMethod: .reflectImage)
+                if #available(iOS 17.0, *) {
+                    OriginalImageTip.orignalImageChanged.toggle()
+                }
             }
             .foregroundColor(Color.black)
             .buttonStyle(.bordered)
             .shadow(radius: UIConstants.shadowRadius)
             .padding(EdgeInsets(top: Padding.normal.rawValue, leading: .zero, bottom: .zero, trailing: .zero))
             Spacer()
-            
         }
     }
 }
