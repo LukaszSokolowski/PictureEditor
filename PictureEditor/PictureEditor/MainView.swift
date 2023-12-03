@@ -75,6 +75,7 @@ struct MainView: View {
                             if let imageData {
                                 self.imageData = imageData
                                 self.originalImage = UIImage(data: imageData)!
+                                self.processedImage = originalImage
                             } else {
                                 print("No supported content type found.")
                             }
