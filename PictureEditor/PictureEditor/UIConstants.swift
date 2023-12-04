@@ -9,4 +9,5 @@ import Foundation
 
 enum UIConstants {
     static let shadowRadius: CGFloat = 16.0
+    static let iconSize: CGFloat = 32.0
 }
