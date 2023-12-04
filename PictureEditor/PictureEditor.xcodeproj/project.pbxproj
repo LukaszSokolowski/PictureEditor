@@ -19,8 +19,6 @@
 		219EEF7B2B1D559A00D35B84 /* PressAndRelease.swift in Sources */ = {isa = PBXBuildFile; fileRef = 219EEF7A2B1D559A00D35B84 /* PressAndRelease.swift */; };
 		219EEF7D2B1D594C00D35B84 /* Icons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 219EEF7C2B1D594C00D35B84 /* Icons.swift */; };
 		219EEF7F2B1E7E4900D35B84 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 219EEF7E2B1E7E4900D35B84 /* Colors.swift */; };
-		21AFD834298B2BD300FBAA9A /* AutopaySdk.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 21AFD832298B2B7100FBAA9A /* AutopaySdk.xcframework */; };
-		21AFD835298B2BD300FBAA9A /* AutopaySdk.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 21AFD832298B2B7100FBAA9A /* AutopaySdk.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		21B50BF828F9FFF9001DB5B9 /* PictureEditorApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21B50BF728F9FFF9001DB5B9 /* PictureEditorApp.swift */; };
 		21B50BFA28F9FFF9001DB5B9 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21B50BF928F9FFF9001DB5B9 /* ContentView.swift */; };
 		21B50BFC28F9FFFA001DB5B9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 21B50BFB28F9FFFA001DB5B9 /* Assets.xcassets */; };
@@ -62,7 +60,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				21AFD835298B2BD300FBAA9A /* AutopaySdk.xcframework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -85,7 +82,6 @@
 		219EEF7A2B1D559A00D35B84 /* PressAndRelease.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PressAndRelease.swift; sourceTree = "<group>"; };
 		219EEF7C2B1D594C00D35B84 /* Icons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Icons.swift; sourceTree = "<group>"; };
 		219EEF7E2B1E7E4900D35B84 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
-		21AFD832298B2B7100FBAA9A /* AutopaySdk.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = AutopaySdk.xcframework; sourceTree = "<group>"; };
 		21B50BF428F9FFF9001DB5B9 /* PictureEditor.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PictureEditor.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		21B50BF728F9FFF9001DB5B9 /* PictureEditorApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PictureEditorApp.swift; sourceTree = "<group>"; };
 		21B50BF928F9FFF9001DB5B9 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -114,7 +110,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				21AFD834298B2BD300FBAA9A /* AutopaySdk.xcframework in Frameworks */,
 				C566920C3728AD99AABCFA80 /* Pods_PictureEditor.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -285,7 +280,6 @@
 		BABCE3A055AEB59B16CF3D04 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				21AFD832298B2B7100FBAA9A /* AutopaySdk.xcframework */,
 				1210D02BB7FAB283A842F170 /* Pods_PictureEditor.framework */,
 				52E13780CCAD032B9CF90CE2 /* Pods_PictureEditor_PictureEditorUITests.framework */,
 				8E0746081AEF0FE7EF7F57A4 /* Pods_PictureEditorTests.framework */,
