@@ -24,10 +24,10 @@ struct OriginalImageTip: Tip {
     }
     
     var title: Text {
-        Text("Tap and hold to see your orignal photo")
+        Text("Tap and hold to view the original photo")
     }
     
     var image: Image? {
-        Image(systemName: "hand.tap")
+        Image(systemName: Icons.handTap.rawValue)
     }
 }

@@ -19,9 +19,9 @@ struct PhotoPickerView: View {
         PhotosPicker(selection: $pickerItemSelection,
                      matching: .images,
                      photoLibrary: .shared()) {
-            Image(systemName: "plus.circle")
+            Image(systemName: Icons.plusCircle.rawValue)
                 .symbolRenderingMode(.monochrome)
-                .font(.system(size: 32))
+                .font(.system(size: UIConstants.iconSize))
                 .foregroundColor(.black)
         }
     }

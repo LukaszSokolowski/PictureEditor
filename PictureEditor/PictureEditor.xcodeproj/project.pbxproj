@@ -17,6 +17,7 @@
 		219267C72B100D740089D273 /* Padding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 219267C62B100D740089D273 /* Padding.swift */; };
 		219267C92B100D9C0089D273 /* UIConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 219267C82B100D9C0089D273 /* UIConstants.swift */; };
 		219EEF7B2B1D559A00D35B84 /* PressAndRelease.swift in Sources */ = {isa = PBXBuildFile; fileRef = 219EEF7A2B1D559A00D35B84 /* PressAndRelease.swift */; };
+		219EEF7D2B1D594C00D35B84 /* Icons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 219EEF7C2B1D594C00D35B84 /* Icons.swift */; };
 		21AFD834298B2BD300FBAA9A /* AutopaySdk.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 21AFD832298B2B7100FBAA9A /* AutopaySdk.xcframework */; };
 		21AFD835298B2BD300FBAA9A /* AutopaySdk.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 21AFD832298B2B7100FBAA9A /* AutopaySdk.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		21B50BF828F9FFF9001DB5B9 /* PictureEditorApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21B50BF728F9FFF9001DB5B9 /* PictureEditorApp.swift */; };
@@ -81,6 +82,7 @@
 		219267C62B100D740089D273 /* Padding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Padding.swift; sourceTree = "<group>"; };
 		219267C82B100D9C0089D273 /* UIConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIConstants.swift; sourceTree = "<group>"; };
 		219EEF7A2B1D559A00D35B84 /* PressAndRelease.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PressAndRelease.swift; sourceTree = "<group>"; };
+		219EEF7C2B1D594C00D35B84 /* Icons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Icons.swift; sourceTree = "<group>"; };
 		21AFD832298B2B7100FBAA9A /* AutopaySdk.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = AutopaySdk.xcframework; sourceTree = "<group>"; };
 		21B50BF428F9FFF9001DB5B9 /* PictureEditor.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PictureEditor.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		21B50BF728F9FFF9001DB5B9 /* PictureEditorApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PictureEditorApp.swift; sourceTree = "<group>"; };
@@ -163,13 +165,14 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
-		219267C52B100D620089D273 /* Shared */ = {
+		219267C52B100D620089D273 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
 				219267C62B100D740089D273 /* Padding.swift */,
 				219267C82B100D9C0089D273 /* UIConstants.swift */,
+				219EEF7C2B1D594C00D35B84 /* Icons.swift */,
 			);
-			name = Shared;
+			name = Helpers;
 			sourceTree = "<group>";
 		};
 		219EEF792B1D556E00D35B84 /* ViewModifiers */ = {
@@ -208,7 +211,7 @@
 				219EEF792B1D556E00D35B84 /* ViewModifiers */,
 				21F1A2272B1D356800895878 /* Tips */,
 				21C7D5492B1CA5A9002FB63F /* PhotoPickerView */,
-				219267C52B100D620089D273 /* Shared */,
+				219267C52B100D620089D273 /* Helpers */,
 				219267C42B100D200089D273 /* Model */,
 				21B50BF728F9FFF9001DB5B9 /* PictureEditorApp.swift */,
 				215BDC7828FA095800E460B4 /* MainView.swift */,
@@ -496,6 +499,7 @@
 				213851AC28FC790C0091BE94 /* WrappedImage.swift in Sources */,
 				21B50C0128F9FFFA001DB5B9 /* Persistence.swift in Sources */,
 				213851AE28FC79220091BE94 /* ImageProcessMethod.swift in Sources */,
+				219EEF7D2B1D594C00D35B84 /* Icons.swift in Sources */,
 				219267C72B100D740089D273 /* Padding.swift in Sources */,
 				213851AA28FC78F90091BE94 /* HistogramLevels.swift in Sources */,
 				219267C92B100D9C0089D273 /* UIConstants.swift in Sources */,

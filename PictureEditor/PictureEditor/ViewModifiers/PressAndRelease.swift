@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+///Since there is no elegant way to catch the "tap release" action, we need to use DragGesture with zero minimum distance
 struct PressAndRelease: ViewModifier {
     @Binding var pressing: Bool
     var onRelease: () -> Void
