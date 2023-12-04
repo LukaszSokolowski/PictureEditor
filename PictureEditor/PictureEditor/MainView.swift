@@ -10,31 +10,15 @@ import PhotosUI
 import TipKit
 
 struct MainView: View {
-    @GestureState private var isDetectingLongPress = false
-    @State private var completedLongPress = false
-    
     @State var originalImage = UIImage(imageLiteralResourceName: "RockyTheDoge")
     @State var processedImage: UIImage?
-    
     @State var selectedItems: [PhotosPickerItem] = []
     @State var imageData: Data?
     @State var imageSelection: PhotosPickerItem?
-    
-    var longPress: some Gesture {
-        LongPressGesture(minimumDuration: 1)
-            .updating($isDetectingLongPress) { currentState, gestureState, _ in
-                gestureState = currentState
-            }
-            .onEnded { finished in
-                completedLongPress = finished
-                if #available(iOS 17.0, *) {
-                    originalImageTip.invalidate(reason: .actionPerformed)
-                }
-            }
-    }
+    @State var isPressing: Bool = false
     
     var bottomContainerImage: UIImage {
-        isDetectingLongPress ? originalImage : processedImage ?? originalImage
+        isPressing ? originalImage : processedImage ?? originalImage
     }
     
     var originalImageTip = OriginalImageTip()
@@ -60,7 +44,13 @@ struct MainView: View {
                     .resizable()
                     .aspectRatio(contentMode: .fit)
                     .padding(Padding.small.rawValue)
-                    .gesture(longPress)
+                    ._onButtonGesture { pressing in
+                        self.isPressing = pressing
+                    } perform: {
+                        if #available(iOS 17.0, *) {
+                            originalImageTip.invalidate(reason: .actionPerformed)
+                        }
+                    }
             }.task {
                 if #available(iOS 17.0, *) {
                     try? Tips.configure([
