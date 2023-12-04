@@ -9,8 +9,8 @@ import UIKit
 import Accelerate
 
 struct VImageWrapper {
-    ///Most of Accelerate functions expect a flag parameter used to restrict or provide context to the function.
-    ///For now I won’t need to provide this, so I create this cosntant with no flag at all
+    ///Most functions of the Accelerate framework expect a flag parameter used to constrain or provide context to the function.
+    ///For now there is no need to provide this, so I create this constant with "no flag" value
     let vNoFlags = vImage_Flags(kvImageNoFlags)
     
     var uiImage: UIImage
@@ -34,7 +34,9 @@ struct VImageWrapper {
               let format = vImage_CGImageFormat(cgImage: originalCgImage),
               let cgImage = try? buffer.createCGImage(format: format)
         else { return nil }
-        let image = UIImage(cgImage: cgImage, scale: 1.0, orientation: uiImage.imageOrientation)
+        let image = UIImage(cgImage: cgImage,
+                            scale: 1.0,
+                            orientation: uiImage.imageOrientation)
         return image
     }
     
@@ -75,6 +77,18 @@ struct VImageWrapper {
                 &imageBuffer,
                 &destinationBuffer,
                 vNoFlags)
+        case .rotateLeft:
+            error = vImageRotate90_ARGB8888(&imageBuffer,
+                                            &destinationBuffer,
+                                            UInt8(1),
+                                            [0],
+                                            vNoFlags)
+        case .rotateRight:
+            error = vImageRotate90_ARGB8888(&imageBuffer,
+                                            &destinationBuffer,
+                                            UInt8(3),
+                                            [0],
+                                            vNoFlags)
         }
         
         guard error == kvImageNoError else {
@@ -129,15 +143,15 @@ struct VImageWrapper {
         }
         
         guard error == kvImageNoError else {
-          printVImageError(error: error)
-          return nil
+            printVImageError(error: error)
+            return nil
         }
-
+        
         return HistogramLevels(
-          red: redArray,
-          green: greenArray,
-          blue: blueArray,
-          alpha: alphaArray
+            red: redArray,
+            green: greenArray,
+            blue: blueArray,
+            alpha: alphaArray
         )
     }
 }

@@ -11,4 +11,6 @@ enum ImageProcessMethod {
     case equalizeHistogram
     case horizontalReflection
     case verticalReflection
+    case rotateLeft
+    case rotateRight
 }

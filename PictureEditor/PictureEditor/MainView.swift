@@ -108,6 +108,26 @@ struct MainView: View {
                     .buttonStyle(.bordered)
                     .shadow(radius: UIConstants.shadowRadius)
                     .padding(EdgeInsets(top: Padding.normal.rawValue, leading: .zero, bottom: .zero, trailing: .zero))
+                    Button("Rotate left") {
+                        processedImage = processImageWith(processMethod: .rotateLeft)
+                        if #available(iOS 17.0, *) {
+                            OriginalImageTip.orignalImageChanged.toggle()
+                        }
+                    }
+                    .foregroundColor(Color.black)
+                    .buttonStyle(.bordered)
+                    .shadow(radius: UIConstants.shadowRadius)
+                    .padding(EdgeInsets(top: Padding.normal.rawValue, leading: .zero, bottom: .zero, trailing: .zero))
+                    Button("Rotate right") {
+                        processedImage = processImageWith(processMethod: .rotateRight)
+                        if #available(iOS 17.0, *) {
+                            OriginalImageTip.orignalImageChanged.toggle()
+                        }
+                    }
+                    .foregroundColor(Color.black)
+                    .buttonStyle(.bordered)
+                    .shadow(radius: UIConstants.shadowRadius)
+                    .padding(EdgeInsets(top: Padding.normal.rawValue, leading: .zero, bottom: .zero, trailing: .zero))
                 }
                 Spacer()
             }
@@ -136,6 +156,9 @@ private extension MainView {
     func processImageWith(processMethod: ImageProcessMethod) -> UIImage {
         var imageWrapper = VImageWrapper(uiImage: processedImage ?? originalImage)
         imageWrapper.processImageWith(processMethod: processMethod)
+        if #available(iOS 17.0, *) {
+            originalImageTip.invalidate(reason: .actionPerformed)
+        }
         return imageWrapper.processedImage ?? UIImage()
     }
 }
