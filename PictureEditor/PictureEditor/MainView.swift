@@ -76,29 +76,41 @@ struct MainView: View {
                         ])
                     }
                 }
-                Button("Equalize histogram") {
-                    processedImage = processImageWith(processMethod: .equalizeHistogram)
-                    if #available(iOS 17.0, *) {
-                        OriginalImageTip.orignalImageChanged.toggle()
+                
+                HStack {
+                    Button("Equalize histogram") {
+                        processedImage = processImageWith(processMethod: .equalizeHistogram)
+                        if #available(iOS 17.0, *) {
+                            OriginalImageTip.orignalImageChanged.toggle()
+                        }
                     }
-                }
-                .foregroundColor(Color.black)
-                .buttonStyle(.bordered)
-                .shadow(radius: UIConstants.shadowRadius)
-                .padding(EdgeInsets(top: Padding.normal.rawValue, leading: .zero, bottom: .zero, trailing: .zero))
-                Button("Reflect image") {
-                    processedImage = processImageWith(processMethod: .reflectImage)
-                    if #available(iOS 17.0, *) {
-                        OriginalImageTip.orignalImageChanged.toggle()
+                    .foregroundColor(Color.black)
+                    .buttonStyle(.bordered)
+                    .shadow(radius: UIConstants.shadowRadius)
+                    .padding(EdgeInsets(top: Padding.normal.rawValue, leading: .zero, bottom: .zero, trailing: .zero))
+                    Button("Horizontal reflect") {
+                        processedImage = processImageWith(processMethod: .horizontalReflection)
+                        if #available(iOS 17.0, *) {
+                            OriginalImageTip.orignalImageChanged.toggle()
+                        }
                     }
+                    .foregroundColor(Color.black)
+                    .buttonStyle(.bordered)
+                    .shadow(radius: UIConstants.shadowRadius)
+                    .padding(EdgeInsets(top: Padding.normal.rawValue, leading: .zero, bottom: .zero, trailing: .zero))
+                    Button("Vertical reflect") {
+                        processedImage = processImageWith(processMethod: .verticalReflection)
+                        if #available(iOS 17.0, *) {
+                            OriginalImageTip.orignalImageChanged.toggle()
+                        }
+                    }
+                    .foregroundColor(Color.black)
+                    .buttonStyle(.bordered)
+                    .shadow(radius: UIConstants.shadowRadius)
+                    .padding(EdgeInsets(top: Padding.normal.rawValue, leading: .zero, bottom: .zero, trailing: .zero))
                 }
-                .foregroundColor(Color.black)
-                .buttonStyle(.bordered)
-                .shadow(radius: UIConstants.shadowRadius)
-                .padding(EdgeInsets(top: Padding.normal.rawValue, leading: .zero, bottom: .zero, trailing: .zero))
                 Spacer()
             }
-            
         }
     }
 }

@@ -64,8 +64,14 @@ struct VImageWrapper {
                 &destinationBuffer,
                 vNoFlags)
             
-        case .reflectImage:
+        case .horizontalReflection:
             error = vImageHorizontalReflect_ARGB8888(
+                &imageBuffer,
+                &destinationBuffer,
+                vNoFlags)
+            
+        case .verticalReflection:
+            error = vImageVerticalReflect_ARGB8888(
                 &imageBuffer,
                 &destinationBuffer,
                 vNoFlags)

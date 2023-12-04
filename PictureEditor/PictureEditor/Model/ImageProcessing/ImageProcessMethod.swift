@@ -9,5 +9,6 @@ import Foundation
 
 enum ImageProcessMethod {
     case equalizeHistogram
-    case reflectImage
+    case horizontalReflection
+    case verticalReflection
 }
