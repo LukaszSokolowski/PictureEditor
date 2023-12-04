@@ -16,72 +16,89 @@ struct MainView: View {
     @State var imageData: Data?
     @State var imageSelection: PhotosPickerItem?
     @State var pressesTheImage: Bool = false
+    @State private var animateGradient = false
     
     var bottomContainerImage: UIImage {
         pressesTheImage ? originalImage : processedImage ?? originalImage
     }
     
+    var gradientBackground: some View {
+        LinearGradient(colors: [.white, .init(uiColor: .superLightBlue)],
+                       startPoint: animateGradient ? .topLeading : .bottomLeading,
+                       endPoint: animateGradient ? .bottomTrailing : .topTrailing)
+            .ignoresSafeArea()
+            .onAppear {
+                withAnimation(.linear(duration: 16.0).repeatForever(autoreverses: true)) {
+                    animateGradient.toggle()
+                }
+            }
+    }
+    
     var originalImageTip = OriginalImageTip()
     
     var body: some View {
-        VStack {
-            HStack {
-                Spacer()
-                PhotoPickerView(selection: $imageSelection)
-                    .onChange(of: imageSelection) { selectedItem in
-                        if let selectedItem {
-                            handleTransferableDataFor(selectedItem)
-                        }
-                    }.padding(Padding.normal.rawValue)
-            }
+        ZStack {
+            gradientBackground
             VStack {
-                Text("Processed image")
-                if #available(iOS 17.0, *) {
-                    TipView(originalImageTip, arrowEdge: .bottom)
-                        .tipBackground(.teal.opacity(0.2))
-                        .tipImageSize(CGSize(width: UIConstants.iconSize,
-                                             height: UIConstants.iconSize))
-                        .padding(.horizontal, Padding.small.rawValue)
+                HStack {
+                    Spacer()
+                    PhotoPickerView(selection: $imageSelection)
+                        .onChange(of: imageSelection) { selectedItem in
+                            if let selectedItem {
+                                handleTransferableDataFor(selectedItem)
+                            }
+                        }.padding(Padding.normal.rawValue)
                 }
-                Image(uiImage: bottomContainerImage)
-                    .resizable()
-                    .aspectRatio(contentMode: .fit)
-                    .padding(Padding.small.rawValue)
-                    .pressAndReleaseAction(pressing: $pressesTheImage, onRelease: {
-                        if #available(iOS 17.0, *) {
-                            originalImageTip.invalidate(reason: .actionPerformed)
-                        }
-                    })
-            }.task {
-                if #available(iOS 17.0, *) {
-                    try? Tips.resetDatastore() //Only for testing
-                    try? Tips.configure([
-                        .displayFrequency(.immediate),
-                        .datastoreLocation(.applicationDefault)
-                    ])
+                VStack {
+                    Text("Processed image")
+                    if #available(iOS 17.0, *) {
+                        TipView(originalImageTip, arrowEdge: .bottom)
+                            .tipBackground(.teal.opacity(0.2))
+                            .tipImageSize(CGSize(width: UIConstants.iconSize,
+                                                 height: UIConstants.iconSize))
+                            .padding(.horizontal, Padding.small.rawValue)
+                    }
+                    Image(uiImage: bottomContainerImage)
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .padding(Padding.small.rawValue)
+                        .pressAndReleaseAction(pressing: $pressesTheImage, onRelease: {
+                            if #available(iOS 17.0, *) {
+                                originalImageTip.invalidate(reason: .actionPerformed)
+                            }
+                        })
+                }.task {
+                    if #available(iOS 17.0, *) {
+                        try? Tips.resetDatastore() //Only for testing
+                        try? Tips.configure([
+                            .displayFrequency(.immediate),
+                            .datastoreLocation(.applicationDefault)
+                        ])
+                    }
                 }
+                Button("Equalize histogram") {
+                    processedImage = processImageWith(processMethod: .equalizeHistogram)
+                    if #available(iOS 17.0, *) {
+                        OriginalImageTip.orignalImageChanged.toggle()
+                    }
+                }
+                .foregroundColor(Color.black)
+                .buttonStyle(.bordered)
+                .shadow(radius: UIConstants.shadowRadius)
+                .padding(EdgeInsets(top: Padding.normal.rawValue, leading: .zero, bottom: .zero, trailing: .zero))
+                Button("Reflect image") {
+                    processedImage = processImageWith(processMethod: .reflectImage)
+                    if #available(iOS 17.0, *) {
+                        OriginalImageTip.orignalImageChanged.toggle()
+                    }
+                }
+                .foregroundColor(Color.black)
+                .buttonStyle(.bordered)
+                .shadow(radius: UIConstants.shadowRadius)
+                .padding(EdgeInsets(top: Padding.normal.rawValue, leading: .zero, bottom: .zero, trailing: .zero))
+                Spacer()
             }
-            Button("Equalize histogram") {
-                processedImage = processImageWith(processMethod: .equalizeHistogram)
-                if #available(iOS 17.0, *) {
-                    OriginalImageTip.orignalImageChanged.toggle()
-                }
-            }
-            .foregroundColor(Color.black)
-            .buttonStyle(.bordered)
-            .shadow(radius: UIConstants.shadowRadius)
-            .padding(EdgeInsets(top: Padding.normal.rawValue, leading: .zero, bottom: .zero, trailing: .zero))
-            Button("Reflect image") {
-                processedImage = processImageWith(processMethod: .reflectImage)
-                if #available(iOS 17.0, *) {
-                    OriginalImageTip.orignalImageChanged.toggle()
-                }
-            }
-            .foregroundColor(Color.black)
-            .buttonStyle(.bordered)
-            .shadow(radius: UIConstants.shadowRadius)
-            .padding(EdgeInsets(top: Padding.normal.rawValue, leading: .zero, bottom: .zero, trailing: .zero))
-            Spacer()
+            
         }
     }
 }
