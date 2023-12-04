@@ -63,9 +63,7 @@ struct MainView: View {
                         .aspectRatio(contentMode: .fit)
                         .padding(Padding.small.rawValue)
                         .pressAndReleaseAction(pressing: $pressesTheImage, onRelease: {
-                            if #available(iOS 17.0, *) {
-                                originalImageTip.invalidate(reason: .actionPerformed)
-                            }
+                           tipActionPerformed()
                         })
                 }.task {
                     if #available(iOS 17.0, *) {
@@ -80,9 +78,6 @@ struct MainView: View {
                 HStack {
                     Button("Equalize histogram") {
                         processedImage = processImageWith(processMethod: .equalizeHistogram)
-                        if #available(iOS 17.0, *) {
-                            OriginalImageTip.orignalImageChanged.toggle()
-                        }
                     }
                     .foregroundColor(Color.black)
                     .buttonStyle(.bordered)
@@ -90,9 +85,6 @@ struct MainView: View {
                     .padding(EdgeInsets(top: Padding.normal.rawValue, leading: .zero, bottom: .zero, trailing: .zero))
                     Button("Horizontal reflect") {
                         processedImage = processImageWith(processMethod: .horizontalReflection)
-                        if #available(iOS 17.0, *) {
-                            OriginalImageTip.orignalImageChanged.toggle()
-                        }
                     }
                     .foregroundColor(Color.black)
                     .buttonStyle(.bordered)
@@ -100,9 +92,6 @@ struct MainView: View {
                     .padding(EdgeInsets(top: Padding.normal.rawValue, leading: .zero, bottom: .zero, trailing: .zero))
                     Button("Vertical reflect") {
                         processedImage = processImageWith(processMethod: .verticalReflection)
-                        if #available(iOS 17.0, *) {
-                            OriginalImageTip.orignalImageChanged.toggle()
-                        }
                     }
                     .foregroundColor(Color.black)
                     .buttonStyle(.bordered)
@@ -110,9 +99,6 @@ struct MainView: View {
                     .padding(EdgeInsets(top: Padding.normal.rawValue, leading: .zero, bottom: .zero, trailing: .zero))
                     Button("Rotate left") {
                         processedImage = processImageWith(processMethod: .rotateLeft)
-                        if #available(iOS 17.0, *) {
-                            OriginalImageTip.orignalImageChanged.toggle()
-                        }
                     }
                     .foregroundColor(Color.black)
                     .buttonStyle(.bordered)
@@ -120,9 +106,6 @@ struct MainView: View {
                     .padding(EdgeInsets(top: Padding.normal.rawValue, leading: .zero, bottom: .zero, trailing: .zero))
                     Button("Rotate right") {
                         processedImage = processImageWith(processMethod: .rotateRight)
-                        if #available(iOS 17.0, *) {
-                            OriginalImageTip.orignalImageChanged.toggle()
-                        }
                     }
                     .foregroundColor(Color.black)
                     .buttonStyle(.bordered)
@@ -156,10 +139,14 @@ private extension MainView {
     func processImageWith(processMethod: ImageProcessMethod) -> UIImage {
         var imageWrapper = VImageWrapper(uiImage: processedImage ?? originalImage)
         imageWrapper.processImageWith(processMethod: processMethod)
+        tipActionPerformed()
+        return imageWrapper.processedImage ?? UIImage()
+    }
+    
+    func tipActionPerformed() {
         if #available(iOS 17.0, *) {
             originalImageTip.invalidate(reason: .actionPerformed)
         }
-        return imageWrapper.processedImage ?? UIImage()
     }
 }
 
