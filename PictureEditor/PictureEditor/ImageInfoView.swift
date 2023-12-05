@@ -35,8 +35,7 @@ struct ImageInfoView: View {
                 Spacer()
             }
             Spacer()
-        }
-       
+        }.background(BackgroundGradient())
     }
 }
 

@@ -20,22 +20,9 @@ struct MainView: View {
     @State private var imageData: Data?
     @State private var imageSelection: PhotosPickerItem?
     @State private var pressesTheImage: Bool = false
-    @State private var animateGradient = false
     
     var bottomContainerImage: UIImage {
         pressesTheImage ? originalImage : processedImage ?? originalImage
-    }
-    
-    var gradientBackground: some View {
-        LinearGradient(colors: [.white, .init(uiColor: .superLightBlue)],
-                       startPoint: animateGradient ? .topLeading : .bottomLeading,
-                       endPoint: animateGradient ? .bottomTrailing : .topTrailing)
-        .ignoresSafeArea()
-        .onAppear {
-            withAnimation(.linear(duration: 16.0).repeatForever(autoreverses: true)) {
-                animateGradient.toggle()
-            }
-        }
     }
     
     var originalImageTip = OriginalImageTip()
@@ -43,7 +30,7 @@ struct MainView: View {
     var body: some View {
         NavigationStack {
             ZStack {
-                gradientBackground
+                BackgroundGradient()
                 VStack {
                     HStack {
                         Spacer()
