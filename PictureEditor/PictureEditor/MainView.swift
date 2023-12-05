@@ -10,16 +10,16 @@ import PhotosUI
 import TipKit
 
 struct MainView: View {
-    @State var originalImage = UIImage(imageLiteralResourceName: "RockyTheDoge")
-    @State var processedImage: UIImage? {
+    @State private var originalImage = UIImage(imageLiteralResourceName: "RockyTheDoge")
+    @State private var processedImage: UIImage? {
         didSet {
             tipRuleSatisfied()
         }
     }
     
-    @State var imageData: Data?
-    @State var imageSelection: PhotosPickerItem?
-    @State var pressesTheImage: Bool = false
+    @State private var imageData: Data?
+    @State private var imageSelection: PhotosPickerItem?
+    @State private var pressesTheImage: Bool = false
     @State private var animateGradient = false
     
     var bottomContainerImage: UIImage {
@@ -30,94 +30,103 @@ struct MainView: View {
         LinearGradient(colors: [.white, .init(uiColor: .superLightBlue)],
                        startPoint: animateGradient ? .topLeading : .bottomLeading,
                        endPoint: animateGradient ? .bottomTrailing : .topTrailing)
-            .ignoresSafeArea()
-            .onAppear {
-                withAnimation(.linear(duration: 16.0).repeatForever(autoreverses: true)) {
-                    animateGradient.toggle()
-                }
+        .ignoresSafeArea()
+        .onAppear {
+            withAnimation(.linear(duration: 16.0).repeatForever(autoreverses: true)) {
+                animateGradient.toggle()
             }
+        }
     }
     
     var originalImageTip = OriginalImageTip()
     
     var body: some View {
-        ZStack {
-            gradientBackground
-            VStack {
-                HStack {
-                    Spacer()
-                    PhotoPickerView(selection: $imageSelection)
-                        .onChange(of: imageSelection) { selectedItem in
-                            if let selectedItem {
-                                handleTransferableDataFor(selectedItem)
-                            }
-                        }.padding(Padding.normal.rawValue)
-                }
+        NavigationStack {
+            ZStack {
+                gradientBackground
                 VStack {
-                    if #available(iOS 17.0, *) {
-                        TipView(originalImageTip,
-                                arrowEdge: .bottom)
+                    HStack {
+                        Spacer()
+                        PhotoPickerView(selection: $imageSelection)
+                            .onChange(of: imageSelection) { selectedItem in
+                                if let selectedItem {
+                                    handleTransferableDataFor(selectedItem)
+                                }
+                            }.padding(Padding.normal.rawValue)
+                    }
+                    VStack {
+                        if #available(iOS 17.0, *) {
+                            TipView(originalImageTip,
+                                    arrowEdge: .bottom)
                             .tipBackground(.teal.opacity(0.2))
                             .tipImageSize(CGSize(width: UIConstants.iconSize,
                                                  height: UIConstants.iconSize))
                             .padding(.horizontal, Padding.small.rawValue)
+                        }
+                        Image(uiImage: bottomContainerImage)
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                            .clipShape(.rect(cornerRadius: 4))
+                            .padding(Padding.small.rawValue)
+                            .pressAndReleaseAction(pressing: $pressesTheImage, onRelease: {
+                                tipActionPerformed()
+                            })
+                    }.task {
+                        if #available(iOS 17.0, *) {
+                            try? Tips.resetDatastore() //Only for testing
+                            try? Tips.configure([
+                                .displayFrequency(.immediate),
+                                .datastoreLocation(.applicationDefault)
+                            ])
+                        }
                     }
-                    Image(uiImage: bottomContainerImage)
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
-                        .clipShape(.rect(cornerRadius: 4))
-                        .padding(Padding.small.rawValue)
-                        .pressAndReleaseAction(pressing: $pressesTheImage, onRelease: {
-                           tipActionPerformed()
-                        })
-                }.task {
-                    if #available(iOS 17.0, *) {
-                        try? Tips.resetDatastore() //Only for testing
-                        try? Tips.configure([
-                            .displayFrequency(.immediate),
-                            .datastoreLocation(.applicationDefault)
-                        ])
+                    Spacer()
+                    VStack {
+                        Button("Equalize histogram") {
+                            processedImage = processImageWith(processMethod: .equalizeHistogram)
+                        }
+                        .foregroundColor(Color.black)
+                        .buttonStyle(.bordered)
+                        .shadow(radius: UIConstants.shadowRadius)
+                        .padding(EdgeInsets(top: Padding.normal.rawValue, leading: .zero, bottom: .zero, trailing: .zero))
+                        Button("Horizontal reflect") {
+                            processedImage = processImageWith(processMethod: .horizontalReflection)
+                        }
+                        .foregroundColor(Color.black)
+                        .buttonStyle(.bordered)
+                        .shadow(radius: UIConstants.shadowRadius)
+                        .padding(EdgeInsets(top: Padding.normal.rawValue, leading: .zero, bottom: .zero, trailing: .zero))
+                        Button("Vertical reflect") {
+                            processedImage = processImageWith(processMethod: .verticalReflection)
+                        }
+                        .foregroundColor(Color.black)
+                        .buttonStyle(.bordered)
+                        .shadow(radius: UIConstants.shadowRadius)
+                        .padding(EdgeInsets(top: Padding.normal.rawValue, leading: .zero, bottom: .zero, trailing: .zero))
+                        Button("Rotate left") {
+                            processedImage = processImageWith(processMethod: .rotateLeft)
+                        }
+                        .foregroundColor(Color.black)
+                        .buttonStyle(.bordered)
+                        .shadow(radius: UIConstants.shadowRadius)
+                        .padding(EdgeInsets(top: Padding.normal.rawValue, leading: .zero, bottom: .zero, trailing: .zero))
+                        Button("Rotate right") {
+                            processedImage = processImageWith(processMethod: .rotateRight)
+                        }
+                        .foregroundColor(Color.black)
+                        .buttonStyle(.bordered)
+                        .shadow(radius: UIConstants.shadowRadius)
+                        .padding(EdgeInsets(top: Padding.normal.rawValue, leading: .zero, bottom: .zero, trailing: .zero))
+                        Spacer()
+                        NavigationLink("Present image information", value: originalImage)
+                            .buttonStyle(.bordered)
+                            .foregroundColor(.black)
+                            .padding(EdgeInsets(top: Padding.normal.rawValue, leading: .zero, bottom: .zero, trailing: .zero))
+                    }.navigationDestination(for: UIImage.self) { originalImage in
+                        ImageInfoView(passedImage: originalImage)
                     }
+                    Spacer()
                 }
-                Spacer()
-                VStack {
-                    Button("Equalize histogram") {
-                        processedImage = processImageWith(processMethod: .equalizeHistogram)
-                    }
-                    .foregroundColor(Color.black)
-                    .buttonStyle(.bordered)
-                    .shadow(radius: UIConstants.shadowRadius)
-                    .padding(EdgeInsets(top: Padding.normal.rawValue, leading: .zero, bottom: .zero, trailing: .zero))
-                    Button("Horizontal reflect") {
-                        processedImage = processImageWith(processMethod: .horizontalReflection)
-                    }
-                    .foregroundColor(Color.black)
-                    .buttonStyle(.bordered)
-                    .shadow(radius: UIConstants.shadowRadius)
-                    .padding(EdgeInsets(top: Padding.normal.rawValue, leading: .zero, bottom: .zero, trailing: .zero))
-                    Button("Vertical reflect") {
-                        processedImage = processImageWith(processMethod: .verticalReflection)
-                    }
-                    .foregroundColor(Color.black)
-                    .buttonStyle(.bordered)
-                    .shadow(radius: UIConstants.shadowRadius)
-                    .padding(EdgeInsets(top: Padding.normal.rawValue, leading: .zero, bottom: .zero, trailing: .zero))
-                    Button("Rotate left") {
-                        processedImage = processImageWith(processMethod: .rotateLeft)
-                    }
-                    .foregroundColor(Color.black)
-                    .buttonStyle(.bordered)
-                    .shadow(radius: UIConstants.shadowRadius)
-                    .padding(EdgeInsets(top: Padding.normal.rawValue, leading: .zero, bottom: .zero, trailing: .zero))
-                    Button("Rotate right") {
-                        processedImage = processImageWith(processMethod: .rotateRight)
-                    }
-                    .foregroundColor(Color.black)
-                    .buttonStyle(.bordered)
-                    .shadow(radius: UIConstants.shadowRadius)
-                    .padding(EdgeInsets(top: Padding.normal.rawValue, leading: .zero, bottom: .zero, trailing: .zero))
-                }
-                Spacer()
             }
         }
     }
@@ -146,7 +155,10 @@ private extension MainView {
         imageWrapper.processImageWith(processMethod: processMethod)
         return imageWrapper.processedImage ?? UIImage()
     }
-    
+}
+
+//MARK: - TipKit
+private extension MainView {
     func tipRuleSatisfied() {
         if #available(iOS 17.0, *) {
             OriginalImageTip.orignalImageChanged.toggle()

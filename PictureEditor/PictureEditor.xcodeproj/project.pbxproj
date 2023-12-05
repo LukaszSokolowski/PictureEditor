@@ -28,7 +28,6 @@
 		21B50C0E28F9FFFA001DB5B9 /* PictureEditorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21B50C0D28F9FFFA001DB5B9 /* PictureEditorTests.swift */; };
 		21B50C1828F9FFFA001DB5B9 /* PictureEditorUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21B50C1728F9FFFA001DB5B9 /* PictureEditorUITests.swift */; };
 		21B50C1A28F9FFFA001DB5B9 /* PictureEditorUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21B50C1928F9FFFA001DB5B9 /* PictureEditorUITestsLaunchTests.swift */; };
-		21BB914F29D61BBE00E508AB /* ImageDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21BB914E29D61BBE00E508AB /* ImageDetails.swift */; };
 		21C7D54B2B1CAA4C002FB63F /* PhotoPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21C7D54A2B1CAA4C002FB63F /* PhotoPickerView.swift */; };
 		21F1A2262B1D345200895878 /* Tips.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21F1A2252B1D345200895878 /* Tips.swift */; };
 		35D689F5A8363C81315D2FB8 /* Pods_PictureEditorTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E0746081AEF0FE7EF7F57A4 /* Pods_PictureEditorTests.framework */; };
@@ -94,7 +93,6 @@
 		21B50C1328F9FFFA001DB5B9 /* PictureEditorUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PictureEditorUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		21B50C1728F9FFFA001DB5B9 /* PictureEditorUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PictureEditorUITests.swift; sourceTree = "<group>"; };
 		21B50C1928F9FFFA001DB5B9 /* PictureEditorUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PictureEditorUITestsLaunchTests.swift; sourceTree = "<group>"; };
-		21BB914E29D61BBE00E508AB /* ImageDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageDetails.swift; sourceTree = "<group>"; };
 		21C7D54A2B1CAA4C002FB63F /* PhotoPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoPickerView.swift; sourceTree = "<group>"; };
 		21F1A2252B1D345200895878 /* Tips.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tips.swift; sourceTree = "<group>"; };
 		2B457DAF3E9896FC8B7F10A6 /* Pods-PictureEditorTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PictureEditorTests.release.xcconfig"; path = "Target Support Files/Pods-PictureEditorTests/Pods-PictureEditorTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -218,7 +216,6 @@
 				215BDC7728FA091A00E460B4 /* CoreData */,
 				21B50BFB28F9FFFA001DB5B9 /* Assets.xcassets */,
 				215BDC7F28FAE48500E460B4 /* Notes */,
-				21BB914E29D61BBE00E508AB /* ImageDetails.swift */,
 			);
 			path = PictureEditor;
 			sourceTree = "<group>";
@@ -506,7 +503,6 @@
 				21B50BFA28F9FFF9001DB5B9 /* ContentView.swift in Sources */,
 				215BDC7928FA095800E460B4 /* MainView.swift in Sources */,
 				215BDC7E28FAE2A100E460B4 /* VImageWrapper.swift in Sources */,
-				21BB914F29D61BBE00E508AB /* ImageDetails.swift in Sources */,
 				21B50BF828F9FFF9001DB5B9 /* PictureEditorApp.swift in Sources */,
 				21F1A2262B1D345200895878 /* Tips.swift in Sources */,
 			);

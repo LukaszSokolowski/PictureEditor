@@ -8,40 +8,40 @@
 import SwiftUI
 
 struct ImageInfoView: View {
-    let firstLabelText: String
-    let secondLabelText: String
-    let thirdLabelText: String
-    let fourthLabelText: String
-    let fifthLabelText: String
+    let passedImage: UIImage
     
-    init(firstLabelText: String,
-         secondLabelText: String,
-         thirdLabelText: String,
-         fourthLabelText: String,
-         fifthLabelText: String) {
-        self.firstLabelText = firstLabelText
-        self.secondLabelText = secondLabelText
-        self.thirdLabelText = thirdLabelText
-        self.fourthLabelText = fourthLabelText
-        self.fifthLabelText = fifthLabelText
+    init(passedImage: UIImage) {
+        self.passedImage = passedImage
+    }
+    
+    var imageWidth: String {
+        NumberFormatter().string(from: passedImage.size.width as NSNumber) ?? ""
+    }
+    
+    var imageHeight: String {
+        NumberFormatter().string(from: passedImage.size.height as NSNumber) ?? ""
+    }
+    
+    var colorSpace: String {
+        String(describing: passedImage.cgImage?.colorSpace?.name)
     }
     
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
-        Text("Hello, World!")
-        Text("Hello, World!")
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
-        
+        HStack {
+            VStack {
+                Text("Image width: " + imageWidth)
+                Text("Image height: " + imageHeight)
+                Text("Image color space: " + colorSpace)
+                Spacer()
+            }
+            Spacer()
+        }
+       
     }
 }
 
 struct ImageInfoView_Previews: PreviewProvider {
     static var previews: some View {
-        ImageInfoView(firstLabelText: "Preview value 1",
-                      secondLabelText: "Preview value 2",
-                      thirdLabelText: "Preview value 3",
-                      fourthLabelText: "Preview value 4",
-                      fifthLabelText: "Preview value 5")
+        ImageInfoView(passedImage: .init())
     }
 }
