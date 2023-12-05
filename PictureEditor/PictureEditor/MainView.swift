@@ -11,7 +11,12 @@ import TipKit
 
 struct MainView: View {
     @State var originalImage = UIImage(imageLiteralResourceName: "RockyTheDoge")
-    @State var processedImage: UIImage?
+    @State var processedImage: UIImage? {
+        didSet {
+            tipRuleSatisfied()
+        }
+    }
+    
     @State var imageData: Data?
     @State var imageSelection: PhotosPickerItem?
     @State var pressesTheImage: Bool = false
@@ -74,7 +79,7 @@ struct MainView: View {
                         ])
                     }
                 }
-                
+                Spacer()
                 VStack {
                     Button("Equalize histogram") {
                         processedImage = processImageWith(processMethod: .equalizeHistogram)
@@ -139,8 +144,13 @@ private extension MainView {
     func processImageWith(processMethod: ImageProcessMethod) -> UIImage {
         var imageWrapper = VImageWrapper(uiImage: processedImage ?? originalImage)
         imageWrapper.processImageWith(processMethod: processMethod)
-        tipActionPerformed()
         return imageWrapper.processedImage ?? UIImage()
+    }
+    
+    func tipRuleSatisfied() {
+        if #available(iOS 17.0, *) {
+            OriginalImageTip.orignalImageChanged.toggle()
+        }
     }
     
     func tipActionPerformed() {
