@@ -46,7 +46,11 @@ struct VImageWrapper {
               var destinationBuffer = try? vImage_Buffer(
                 width: image.width,
                 height: image.height,
-                bitsPerPixel: UInt32(image.bitsPerPixel))
+                bitsPerPixel: UInt32(image.bitsPerPixel)),
+                var flippedBuffer = try? vImage_Buffer(
+                  width: image.height,
+                  height: image.width,
+                  bitsPerPixel: UInt32(image.bitsPerPixel))
         else {
             print("Error creating image buffers.")
             processedImage = nil
@@ -78,15 +82,17 @@ struct VImageWrapper {
                 &destinationBuffer,
                 vNoFlags)
         case .rotateLeft:
+            destinationBuffer = flippedBuffer
             error = vImageRotate90_ARGB8888(&imageBuffer,
                                             &destinationBuffer,
-                                            UInt8(1),
+                                            UInt8(kRotate270DegreesClockwise),
                                             [0],
                                             vNoFlags)
         case .rotateRight:
+            destinationBuffer = flippedBuffer
             error = vImageRotate90_ARGB8888(&imageBuffer,
                                             &destinationBuffer,
-                                            UInt8(3),
+                                            UInt8(kRotate270DegreesCounterClockwise),
                                             [0],
                                             vNoFlags)
         }
