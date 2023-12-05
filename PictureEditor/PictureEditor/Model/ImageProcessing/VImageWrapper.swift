@@ -47,10 +47,10 @@ struct VImageWrapper {
                 width: image.width,
                 height: image.height,
                 bitsPerPixel: UInt32(image.bitsPerPixel)),
-                var flippedBuffer = try? vImage_Buffer(
-                  width: image.height,
-                  height: image.width,
-                  bitsPerPixel: UInt32(image.bitsPerPixel))
+              let flippedBuffer = try? vImage_Buffer(
+                width: image.height,
+                height: image.width,
+                bitsPerPixel: UInt32(image.bitsPerPixel))
         else {
             print("Error creating image buffers.")
             processedImage = nil

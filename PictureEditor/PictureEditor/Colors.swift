@@ -8,5 +8,5 @@
 import UIKit
 
 extension UIColor {
-    static let superLightBlue = UIColor(red: 200/255, green: 240/255, blue: 255/255, alpha: 1)
+    static let superLightBlue = UIColor(red: 175/255, green: 208/255, blue: 232/255, alpha: 1)
 }

@@ -12,7 +12,6 @@ import TipKit
 struct MainView: View {
     @State var originalImage = UIImage(imageLiteralResourceName: "RockyTheDoge")
     @State var processedImage: UIImage?
-    @State var selectedItems: [PhotosPickerItem] = []
     @State var imageData: Data?
     @State var imageSelection: PhotosPickerItem?
     @State var pressesTheImage: Bool = false
@@ -50,9 +49,9 @@ struct MainView: View {
                         }.padding(Padding.normal.rawValue)
                 }
                 VStack {
-                    Text("Processed image")
                     if #available(iOS 17.0, *) {
-                        TipView(originalImageTip, arrowEdge: .bottom)
+                        TipView(originalImageTip,
+                                arrowEdge: .bottom)
                             .tipBackground(.teal.opacity(0.2))
                             .tipImageSize(CGSize(width: UIConstants.iconSize,
                                                  height: UIConstants.iconSize))
@@ -61,6 +60,7 @@ struct MainView: View {
                     Image(uiImage: bottomContainerImage)
                         .resizable()
                         .aspectRatio(contentMode: .fit)
+                        .clipShape(.rect(cornerRadius: 4))
                         .padding(Padding.small.rawValue)
                         .pressAndReleaseAction(pressing: $pressesTheImage, onRelease: {
                            tipActionPerformed()
@@ -75,7 +75,7 @@ struct MainView: View {
                     }
                 }
                 
-                HStack {
+                VStack {
                     Button("Equalize histogram") {
                         processedImage = processImageWith(processMethod: .equalizeHistogram)
                     }
