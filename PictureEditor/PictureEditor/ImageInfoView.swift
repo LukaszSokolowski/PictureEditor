@@ -36,7 +36,8 @@ struct ImageInfoView: View {
     }
     
     var body: some View {
-        HStack {
+        ZStack {
+            BackgroundGradient()
             VStack {
                 Text("Image width: " + imageWidth)
                 Text("Image height: " + imageHeight)
@@ -44,8 +45,7 @@ struct ImageInfoView: View {
                 Text("Alpha channel: " + alphaChannel)
                 Spacer()
             }
-            Spacer()
-        }.background(BackgroundGradient())
+        }
     }
 }
 

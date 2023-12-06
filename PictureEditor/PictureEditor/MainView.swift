@@ -33,6 +33,16 @@ struct MainView: View {
                 BackgroundGradient()
                 VStack {
                     HStack {
+                        if processedImage != nil {
+                            Button {
+                                processedImage = nil
+                            } label: {
+                                Image(systemName: "exclamationmark.arrow.circlepath")
+                                    .symbolRenderingMode(.monochrome)
+                                    .font(.system(size: UIConstants.iconSize))
+                                    .foregroundColor(.black)
+                            }.padding(Padding.normal.rawValue)
+                        }
                         Spacer()
                         PhotoPickerView(selection: $imageSelection)
                             .onChange(of: imageSelection) { selectedItem in
