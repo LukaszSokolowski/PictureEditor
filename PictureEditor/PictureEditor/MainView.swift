@@ -20,6 +20,7 @@ struct MainView: View {
     @State private var imageData: Data?
     @State private var imageSelection: PhotosPickerItem?
     @State private var pressesTheImage: Bool = false
+    @State private var isRevertModalActive: Bool = false
     
     var bottomContainerImage: UIImage {
         pressesTheImage ? originalImage : processedImage ?? originalImage
@@ -35,7 +36,7 @@ struct MainView: View {
                     HStack {
                         if processedImage != nil {
                             Button {
-                                processedImage = nil
+                                isRevertModalActive = true
                             } label: {
                                 Image(systemName: Icons.revert)
                                     .symbolRenderingMode(.monochrome)
@@ -108,6 +109,12 @@ struct MainView: View {
                         ImageInfoView(passedImage: originalImage)
                     }
                     Spacer()
+                }
+                if isRevertModalActive {
+                    PopupView(title: "hehe", content: "Content", buttonTitle: "ClickMe") {
+                        isRevertModalActive = false
+                        processedImage = nil
+                    }
                 }
             }
         }

@@ -10,6 +10,8 @@
 		213851AA28FC78F90091BE94 /* HistogramLevels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 213851A928FC78F90091BE94 /* HistogramLevels.swift */; };
 		213851AC28FC790C0091BE94 /* WrappedImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 213851AB28FC790C0091BE94 /* WrappedImage.swift */; };
 		213851AE28FC79220091BE94 /* ImageProcessMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 213851AD28FC79220091BE94 /* ImageProcessMethod.swift */; };
+		214D02472B2120D7005A53A9 /* BlurEffect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 214D02462B2120D7005A53A9 /* BlurEffect.swift */; };
+		214D02492B212127005A53A9 /* PopupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 214D02482B212127005A53A9 /* PopupView.swift */; };
 		215BDC7928FA095800E460B4 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 215BDC7828FA095800E460B4 /* MainView.swift */; };
 		215BDC7B28FA138B00E460B4 /* ImageInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 215BDC7A28FA138B00E460B4 /* ImageInfoView.swift */; };
 		215BDC7E28FAE2A100E460B4 /* VImageWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 215BDC7D28FAE2A100E460B4 /* VImageWrapper.swift */; };
@@ -74,6 +76,8 @@
 		213851A928FC78F90091BE94 /* HistogramLevels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistogramLevels.swift; sourceTree = "<group>"; };
 		213851AB28FC790C0091BE94 /* WrappedImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WrappedImage.swift; sourceTree = "<group>"; };
 		213851AD28FC79220091BE94 /* ImageProcessMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageProcessMethod.swift; sourceTree = "<group>"; };
+		214D02462B2120D7005A53A9 /* BlurEffect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlurEffect.swift; sourceTree = "<group>"; };
+		214D02482B212127005A53A9 /* PopupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopupView.swift; sourceTree = "<group>"; };
 		215BDC7828FA095800E460B4 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		215BDC7A28FA138B00E460B4 /* ImageInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageInfoView.swift; sourceTree = "<group>"; };
 		215BDC7D28FAE2A100E460B4 /* VImageWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VImageWrapper.swift; sourceTree = "<group>"; };
@@ -135,6 +139,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		214D02452B2120B2005A53A9 /* BlurEffect */ = {
+			isa = PBXGroup;
+			children = (
+				214D02462B2120D7005A53A9 /* BlurEffect.swift */,
+			);
+			path = BlurEffect;
+			sourceTree = "<group>";
+		};
+		214D024A2B212201005A53A9 /* PopupView */ = {
+			isa = PBXGroup;
+			children = (
+				214D02482B212127005A53A9 /* PopupView.swift */,
+			);
+			path = PopupView;
+			sourceTree = "<group>";
+		};
 		215BDC7728FA091A00E460B4 /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
@@ -208,7 +228,9 @@
 		21B50BF628F9FFF9001DB5B9 /* PictureEditor */ = {
 			isa = PBXGroup;
 			children = (
-				21CE5CEA2B1FF42A00C11DDC /* Buttons */,
+				214D024A2B212201005A53A9 /* PopupView */,
+				214D02452B2120B2005A53A9 /* BlurEffect */,
+				21CE5CEA2B1FF42A00C11DDC /* GradientButtonStyle */,
 				21CE5CE72B1FD6B700C11DDC /* BackgroundGradient */,
 				219EEF792B1D556E00D35B84 /* ViewModifiers */,
 				21F1A2272B1D356800895878 /* Tips */,
@@ -267,12 +289,12 @@
 			path = BackgroundGradient;
 			sourceTree = "<group>";
 		};
-		21CE5CEA2B1FF42A00C11DDC /* Buttons */ = {
+		21CE5CEA2B1FF42A00C11DDC /* GradientButtonStyle */ = {
 			isa = PBXGroup;
 			children = (
 				21CE5CEB2B1FF43C00C11DDC /* GradientButton.swift */,
 			);
-			path = Buttons;
+			path = GradientButtonStyle;
 			sourceTree = "<group>";
 		};
 		21F1A2272B1D356800895878 /* Tips */ = {
@@ -510,6 +532,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				214D02492B212127005A53A9 /* PopupView.swift in Sources */,
 				21C7D54B2B1CAA4C002FB63F /* PhotoPickerView.swift in Sources */,
 				219EEF7F2B1E7E4900D35B84 /* UIColor+.swift in Sources */,
 				219EEF7B2B1D559A00D35B84 /* PressAndRelease.swift in Sources */,
@@ -519,6 +542,7 @@
 				219EEF7D2B1D594C00D35B84 /* Icons.swift in Sources */,
 				219267C72B100D740089D273 /* Padding.swift in Sources */,
 				213851AA28FC78F90091BE94 /* HistogramLevels.swift in Sources */,
+				214D02472B2120D7005A53A9 /* BlurEffect.swift in Sources */,
 				219267C92B100D9C0089D273 /* UIConstants.swift in Sources */,
 				21B50C0428F9FFFA001DB5B9 /* PictureEditor.xcdatamodeld in Sources */,
 				21CE5CE92B1FD6D500C11DDC /* BackgroundGradient.swift in Sources */,
