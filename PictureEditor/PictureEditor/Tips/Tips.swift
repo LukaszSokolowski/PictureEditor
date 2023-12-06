@@ -28,6 +28,6 @@ struct OriginalImageTip: Tip {
     }
     
     var image: Image? {
-        Image(systemName: Icons.handTap.rawValue)
+        Image(systemName: Icons.handTap)
     }
 }

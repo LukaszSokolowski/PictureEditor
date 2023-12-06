@@ -7,7 +7,8 @@
 
 import Foundation
 
-enum Icons: String {
-    case plusCircle = "plus.circle"
-    case handTap = "hand.tap"
+struct Icons {
+    static let plusCircle = "plus.circle"
+    static let handTap = "hand.tap"
+    static let revert = "exclamationmark.arrow.circlepath"
 }

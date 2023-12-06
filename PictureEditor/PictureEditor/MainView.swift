@@ -37,7 +37,7 @@ struct MainView: View {
                             Button {
                                 processedImage = nil
                             } label: {
-                                Image(systemName: "exclamationmark.arrow.circlepath")
+                                Image(systemName: Icons.revert)
                                     .symbolRenderingMode(.monochrome)
                                     .font(.system(size: UIConstants.iconSize))
                                     .foregroundColor(.black)
