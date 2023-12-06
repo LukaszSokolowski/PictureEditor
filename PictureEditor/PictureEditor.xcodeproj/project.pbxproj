@@ -18,7 +18,7 @@
 		219267C92B100D9C0089D273 /* UIConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 219267C82B100D9C0089D273 /* UIConstants.swift */; };
 		219EEF7B2B1D559A00D35B84 /* PressAndRelease.swift in Sources */ = {isa = PBXBuildFile; fileRef = 219EEF7A2B1D559A00D35B84 /* PressAndRelease.swift */; };
 		219EEF7D2B1D594C00D35B84 /* Icons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 219EEF7C2B1D594C00D35B84 /* Icons.swift */; };
-		219EEF7F2B1E7E4900D35B84 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 219EEF7E2B1E7E4900D35B84 /* Colors.swift */; };
+		219EEF7F2B1E7E4900D35B84 /* UIColor+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 219EEF7E2B1E7E4900D35B84 /* UIColor+.swift */; };
 		21B50BF828F9FFF9001DB5B9 /* PictureEditorApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21B50BF728F9FFF9001DB5B9 /* PictureEditorApp.swift */; };
 		21B50BFA28F9FFF9001DB5B9 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21B50BF928F9FFF9001DB5B9 /* ContentView.swift */; };
 		21B50BFC28F9FFFA001DB5B9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 21B50BFB28F9FFFA001DB5B9 /* Assets.xcassets */; };
@@ -30,6 +30,7 @@
 		21B50C1A28F9FFFA001DB5B9 /* PictureEditorUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21B50C1928F9FFFA001DB5B9 /* PictureEditorUITestsLaunchTests.swift */; };
 		21C7D54B2B1CAA4C002FB63F /* PhotoPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21C7D54A2B1CAA4C002FB63F /* PhotoPickerView.swift */; };
 		21CE5CE92B1FD6D500C11DDC /* BackgroundGradient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21CE5CE82B1FD6D500C11DDC /* BackgroundGradient.swift */; };
+		21CE5CEC2B1FF43C00C11DDC /* GradientButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21CE5CEB2B1FF43C00C11DDC /* GradientButton.swift */; };
 		21F1A2262B1D345200895878 /* Tips.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21F1A2252B1D345200895878 /* Tips.swift */; };
 		35D689F5A8363C81315D2FB8 /* Pods_PictureEditorTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E0746081AEF0FE7EF7F57A4 /* Pods_PictureEditorTests.framework */; };
 		360A13E43F4B5895CB227E53 /* Pods_PictureEditor_PictureEditorUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52E13780CCAD032B9CF90CE2 /* Pods_PictureEditor_PictureEditorUITests.framework */; };
@@ -81,7 +82,7 @@
 		219267C82B100D9C0089D273 /* UIConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIConstants.swift; sourceTree = "<group>"; };
 		219EEF7A2B1D559A00D35B84 /* PressAndRelease.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PressAndRelease.swift; sourceTree = "<group>"; };
 		219EEF7C2B1D594C00D35B84 /* Icons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Icons.swift; sourceTree = "<group>"; };
-		219EEF7E2B1E7E4900D35B84 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
+		219EEF7E2B1E7E4900D35B84 /* UIColor+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+.swift"; sourceTree = "<group>"; };
 		21B50BF428F9FFF9001DB5B9 /* PictureEditor.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PictureEditor.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		21B50BF728F9FFF9001DB5B9 /* PictureEditorApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PictureEditorApp.swift; sourceTree = "<group>"; };
 		21B50BF928F9FFF9001DB5B9 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -96,6 +97,7 @@
 		21B50C1928F9FFFA001DB5B9 /* PictureEditorUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PictureEditorUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		21C7D54A2B1CAA4C002FB63F /* PhotoPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoPickerView.swift; sourceTree = "<group>"; };
 		21CE5CE82B1FD6D500C11DDC /* BackgroundGradient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundGradient.swift; sourceTree = "<group>"; };
+		21CE5CEB2B1FF43C00C11DDC /* GradientButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientButton.swift; sourceTree = "<group>"; };
 		21F1A2252B1D345200895878 /* Tips.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tips.swift; sourceTree = "<group>"; };
 		2B457DAF3E9896FC8B7F10A6 /* Pods-PictureEditorTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PictureEditorTests.release.xcconfig"; path = "Target Support Files/Pods-PictureEditorTests/Pods-PictureEditorTests.release.xcconfig"; sourceTree = "<group>"; };
 		52E13780CCAD032B9CF90CE2 /* Pods_PictureEditor_PictureEditorUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PictureEditor_PictureEditorUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -168,7 +170,7 @@
 				219267C62B100D740089D273 /* Padding.swift */,
 				219267C82B100D9C0089D273 /* UIConstants.swift */,
 				219EEF7C2B1D594C00D35B84 /* Icons.swift */,
-				219EEF7E2B1E7E4900D35B84 /* Colors.swift */,
+				219EEF7E2B1E7E4900D35B84 /* UIColor+.swift */,
 			);
 			name = Helpers;
 			sourceTree = "<group>";
@@ -206,6 +208,7 @@
 		21B50BF628F9FFF9001DB5B9 /* PictureEditor */ = {
 			isa = PBXGroup;
 			children = (
+				21CE5CEA2B1FF42A00C11DDC /* Buttons */,
 				21CE5CE72B1FD6B700C11DDC /* BackgroundGradient */,
 				219EEF792B1D556E00D35B84 /* ViewModifiers */,
 				21F1A2272B1D356800895878 /* Tips */,
@@ -262,6 +265,14 @@
 				21CE5CE82B1FD6D500C11DDC /* BackgroundGradient.swift */,
 			);
 			path = BackgroundGradient;
+			sourceTree = "<group>";
+		};
+		21CE5CEA2B1FF42A00C11DDC /* Buttons */ = {
+			isa = PBXGroup;
+			children = (
+				21CE5CEB2B1FF43C00C11DDC /* GradientButton.swift */,
+			);
+			path = Buttons;
 			sourceTree = "<group>";
 		};
 		21F1A2272B1D356800895878 /* Tips */ = {
@@ -500,7 +511,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				21C7D54B2B1CAA4C002FB63F /* PhotoPickerView.swift in Sources */,
-				219EEF7F2B1E7E4900D35B84 /* Colors.swift in Sources */,
+				219EEF7F2B1E7E4900D35B84 /* UIColor+.swift in Sources */,
 				219EEF7B2B1D559A00D35B84 /* PressAndRelease.swift in Sources */,
 				213851AC28FC790C0091BE94 /* WrappedImage.swift in Sources */,
 				21B50C0128F9FFFA001DB5B9 /* Persistence.swift in Sources */,
@@ -517,6 +528,7 @@
 				215BDC7E28FAE2A100E460B4 /* VImageWrapper.swift in Sources */,
 				21B50BF828F9FFF9001DB5B9 /* PictureEditorApp.swift in Sources */,
 				21F1A2262B1D345200895878 /* Tips.swift in Sources */,
+				21CE5CEC2B1FF43C00C11DDC /* GradientButton.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

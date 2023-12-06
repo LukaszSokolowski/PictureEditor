@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import ImageIO
 
 struct ImageInfoView: View {
     let passedImage: UIImage
@@ -15,15 +16,23 @@ struct ImageInfoView: View {
     }
     
     var imageWidth: String {
-        NumberFormatter().string(from: passedImage.size.width as NSNumber) ?? ""
+        NumberFormatter().string(from: passedImage.cgImage!.width as NSNumber) ?? ""
     }
     
     var imageHeight: String {
-        NumberFormatter().string(from: passedImage.size.height as NSNumber) ?? ""
+        NumberFormatter().string(from: passedImage.cgImage!.height as NSNumber) ?? ""
     }
     
     var colorSpace: String {
-        String(describing: passedImage.cgImage?.colorSpace?.name)
+        //TODO: do some switch case here (create w class outside view)
+        guard let colorSpace = passedImage.cgImage?.colorSpace else { return "Unknown" }
+        if colorSpace == CGColorSpace(name: CGColorSpace.sRGB) { return "sRGB" }
+        if colorSpace == CGColorSpace(name: CGColorSpace.displayP3) { return "DisplayP3" }
+        return "Unknown"
+    }
+    
+    var alphaChannel: String {
+        return "TODO"
     }
     
     var body: some View {
@@ -32,6 +41,7 @@ struct ImageInfoView: View {
                 Text("Image width: " + imageWidth)
                 Text("Image height: " + imageHeight)
                 Text("Image color space: " + colorSpace)
+                Text("Alpha channel: " + alphaChannel)
                 Spacer()
             }
             Spacer()
@@ -42,5 +52,11 @@ struct ImageInfoView: View {
 struct ImageInfoView_Previews: PreviewProvider {
     static var previews: some View {
         ImageInfoView(passedImage: .init())
+    }
+}
+
+extension UIImage {
+    var typeIdentifier: String? {
+        cgImage?.utType as String?
     }
 }

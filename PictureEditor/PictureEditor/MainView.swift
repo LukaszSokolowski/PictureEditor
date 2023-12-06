@@ -72,38 +72,23 @@ struct MainView: View {
                         Button("Equalize histogram") {
                             processedImage = processImageWith(processMethod: .equalizeHistogram)
                         }
-                        .foregroundColor(Color.black)
-                        .buttonStyle(.bordered)
-                        .shadow(radius: UIConstants.shadowRadius)
-                        .padding(EdgeInsets(top: Padding.normal.rawValue, leading: .zero, bottom: .zero, trailing: .zero))
+                        .buttonStyle(GradientButton())
                         Button("Horizontal reflect") {
                             processedImage = processImageWith(processMethod: .horizontalReflection)
                         }
-                        .foregroundColor(Color.black)
-                        .buttonStyle(.bordered)
-                        .shadow(radius: UIConstants.shadowRadius)
-                        .padding(EdgeInsets(top: Padding.normal.rawValue, leading: .zero, bottom: .zero, trailing: .zero))
+                        .buttonStyle(GradientButton())
                         Button("Vertical reflect") {
                             processedImage = processImageWith(processMethod: .verticalReflection)
                         }
-                        .foregroundColor(Color.black)
-                        .buttonStyle(.bordered)
-                        .shadow(radius: UIConstants.shadowRadius)
-                        .padding(EdgeInsets(top: Padding.normal.rawValue, leading: .zero, bottom: .zero, trailing: .zero))
+                        .buttonStyle(GradientButton())
                         Button("Rotate left") {
                             processedImage = processImageWith(processMethod: .rotateLeft)
                         }
-                        .foregroundColor(Color.black)
-                        .buttonStyle(.bordered)
-                        .shadow(radius: UIConstants.shadowRadius)
-                        .padding(EdgeInsets(top: Padding.normal.rawValue, leading: .zero, bottom: .zero, trailing: .zero))
+                        .buttonStyle(GradientButton())
                         Button("Rotate right") {
                             processedImage = processImageWith(processMethod: .rotateRight)
                         }
-                        .foregroundColor(Color.black)
-                        .buttonStyle(.bordered)
-                        .shadow(radius: UIConstants.shadowRadius)
-                        .padding(EdgeInsets(top: Padding.normal.rawValue, leading: .zero, bottom: .zero, trailing: .zero))
+                        .buttonStyle(GradientButton())
                         Spacer()
                         NavigationLink("Present image information", value: originalImage)
                             .buttonStyle(.bordered)
