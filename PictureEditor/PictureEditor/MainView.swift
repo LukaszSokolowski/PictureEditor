@@ -111,10 +111,17 @@ struct MainView: View {
                     Spacer()
                 }
                 if isRevertModalActive {
-                    PopupView(title: "hehe", content: "Content", buttonTitle: "ClickMe") {
+                    PopupView(title: "Revert to original?",
+                              content: "You cannot undo this action",
+                              confirmButtonTitle: "Revert",
+                              cancelButtonTitle: "Cancel",
+                              confirmAction: {
                         isRevertModalActive = false
                         processedImage = nil
-                    }
+                    }, 
+                              cancelAction: {
+                        isRevertModalActive = false
+                    })
                 }
             }
         }
