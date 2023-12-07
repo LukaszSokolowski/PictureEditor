@@ -41,18 +41,25 @@ struct PopupView: View {
         HStack {
             VStack {
                 VStack(spacing: Padding.normal.rawValue) {
-                    Text(title).fontWeight(.bold).font(.title)
-                    if let content { Text(content).font(.headline).fontWeight(.light)}
-                    if let confirmButtonTitle, let confirmAction {
-                        Button(confirmButtonTitle) {
-                            confirmAction()
-                        }.buttonStyle(GradientButton())
+                    Text(title)
+                        .fontWeight(.bold)
+                        .font(.title)
+                    if let content {
+                        Text(content)
+                            .font(.headline)
+                            .fontWeight(.light)
                     }
-                    
-                    if let cancelButtonTitle, let cancelAction {
-                        Button(cancelButtonTitle) {
-                            cancelAction()
-                        }.buttonStyle(GradientButton())
+                    VStack(spacing: Padding.small.rawValue) {
+                        if let confirmButtonTitle, let confirmAction {
+                            Button(confirmButtonTitle) {
+                                confirmAction()
+                            }.buttonStyle(GradientButton())
+                        }
+                        if let cancelButtonTitle, let cancelAction {
+                            Button(cancelButtonTitle) {
+                                cancelAction()
+                            }.buttonStyle(GradientButton())
+                        }
                     }
                 }
                 .padding(Padding.big.rawValue)
@@ -76,7 +83,7 @@ struct PopupView: View {
     return PopupView(title: "Test title",
                      content: "Test content",
                      confirmButtonTitle: "Click me!",
-                     confirmAction: confirmAction,
                      cancelButtonTitle: "Cancel",
+                     confirmAction: confirmAction,
                      cancelAction: cancelAction)
 }

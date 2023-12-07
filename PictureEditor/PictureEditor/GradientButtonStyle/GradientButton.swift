@@ -19,11 +19,10 @@ struct GradientButton: ButtonStyle {
             .padding(.vertical, Padding.small.rawValue)
             .padding(.horizontal, Padding.normal.rawValue)
             .background(
-                Capsule().fill(Color(uiColor: .softBlue))
+                RoundedRectangle(cornerRadius: 8).fill(Color(uiColor: .softBlue))
             )
             .overlay(
-                Capsule()
-                    .strokeBorder(.black, lineWidth: 1)
+                RoundedRectangle(cornerRadius: 8).strokeBorder(.black, lineWidth: 1)
             )
     }
 }
