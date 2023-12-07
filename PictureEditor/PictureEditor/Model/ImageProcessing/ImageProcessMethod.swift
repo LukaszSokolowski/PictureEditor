@@ -13,4 +13,5 @@ enum ImageProcessMethod {
     case verticalReflection
     case rotateLeft
     case rotateRight
+    case blur(Int, Int)
 }

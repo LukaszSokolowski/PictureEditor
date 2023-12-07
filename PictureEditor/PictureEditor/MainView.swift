@@ -102,6 +102,10 @@ struct MainView: View {
                             processedImage = processImageWith(processMethod: .rotateRight)
                         }
                         .buttonStyle(GradientButton())
+                        Button("Blur effect") {
+                            processedImage = processImageWith(processMethod: .blur(64, 64))
+                        }
+                        .buttonStyle(GradientButton())
                         NavigationLink("Present image information", value: originalImage)
                             .buttonStyle(.bordered)
                             .foregroundColor(.black)

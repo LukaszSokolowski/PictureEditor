@@ -69,13 +69,11 @@ struct VImageWrapper {
                 &imageBuffer,
                 &destinationBuffer,
                 vNoFlags)
-            
         case .horizontalReflection:
             error = vImageHorizontalReflect_ARGB8888(
                 &imageBuffer,
                 &destinationBuffer,
                 vNoFlags)
-            
         case .verticalReflection:
             error = vImageVerticalReflect_ARGB8888(
                 &imageBuffer,
@@ -95,6 +93,16 @@ struct VImageWrapper {
                                             UInt8(kRotate270DegreesCounterClockwise),
                                             [0],
                                             vNoFlags)
+        case .blur(let blurWidth, let blurHeight):
+            let oddWidth = UInt32(blurWidth) % 2 == 0 ? UInt32(blurWidth) + 1 : UInt32(blurWidth)
+            let oddHeight = UInt32(blurHeight) % 2 == 0 ? UInt32(blurHeight) + 1 : UInt32(blurHeight)
+            error = vImageTentConvolve_ARGB8888(&imageBuffer,
+                                                &destinationBuffer,
+                                                nil,
+                                                0, 0,
+                                                oddHeight, oddWidth,
+                                                nil,
+                                                vImage_Flags(kvImageEdgeExtend))
         }
         
         guard error == kvImageNoError else {
