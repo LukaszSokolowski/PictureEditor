@@ -40,7 +40,8 @@ struct PopupView: View {
     }
     
     var body: some View {
-        HStack {
+        ZStack{
+            VStack {}.frame(maxWidth: .infinity, maxHeight: .infinity).background(.black).opacity(0.5)
             VStack {
                 VStack(spacing: Padding.normal.rawValue) {
                     Text(title)
