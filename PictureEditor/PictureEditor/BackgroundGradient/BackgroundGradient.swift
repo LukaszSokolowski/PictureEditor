@@ -13,7 +13,7 @@ struct BackgroundGradient: View {
     @State private var animate: Bool = false
     
     var body: some View {
-        LinearGradient(colors: [.white, .init(uiColor: .superLightBlue)],
+        LinearGradient(colors: [.white, .init(uiColor: .lightBlue)],
                        startPoint: animate ? .topLeading : .bottomLeading,
                        endPoint: animate ? .bottomTrailing : .topTrailing)
         .ignoresSafeArea()

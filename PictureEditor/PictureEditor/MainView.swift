@@ -56,6 +56,7 @@ struct MainView: View {
                         if #available(iOS 17.0, *) {
                             TipView(originalImageTip,
                                     arrowEdge: .bottom)
+                            .tint(.black)
                             .tipBackground(.teal.opacity(0.2))
                             .tipImageSize(CGSize(width: UIConstants.iconSize,
                                                  height: UIConstants.iconSize))
@@ -66,7 +67,8 @@ struct MainView: View {
                             .aspectRatio(contentMode: .fit)
                             .clipShape(.rect(cornerRadius: 4))
                             .padding(Padding.small.rawValue)
-                            .pressAndReleaseAction(pressing: $pressesTheImage, onRelease: {
+                            .pressAndReleaseAction(pressing: $pressesTheImage,
+                                                   onRelease: {
                                 tipActionPerformed()
                             })
                     }.task {
@@ -100,7 +102,6 @@ struct MainView: View {
                             processedImage = processImageWith(processMethod: .rotateRight)
                         }
                         .buttonStyle(GradientButton())
-                        Spacer()
                         NavigationLink("Present image information", value: originalImage)
                             .buttonStyle(.bordered)
                             .foregroundColor(.black)
@@ -108,7 +109,6 @@ struct MainView: View {
                     }.navigationDestination(for: UIImage.self) { originalImage in
                         ImageInfoView(passedImage: originalImage)
                     }
-                    Spacer()
                 }
                 if isRevertModalActive {
                     PopupView(title: "Revert to original?",

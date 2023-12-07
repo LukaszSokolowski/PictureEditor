@@ -9,6 +9,8 @@ import SwiftUI
 
 struct PopupView: View {
     private let blurEffectRadius = 4.0
+    private let clipShapeRadius = 12.0
+    private let shadowRadius = 8.0
     private let title: String
     private let content: String?
     private let confirmButtonTitle: String?
@@ -31,7 +33,7 @@ struct PopupView: View {
     }
     
     var gradient: some View {
-        LinearGradient(colors: [.white, .init(uiColor: .superLightBlue)],
+        LinearGradient(colors: [.white, .init(uiColor: .lightBlue)],
                        startPoint: .topLeading,
                        endPoint: .bottomTrailing)
         .ignoresSafeArea()
@@ -64,8 +66,8 @@ struct PopupView: View {
                 }
                 .padding(Padding.big.rawValue)
                 .background(gradient)
-                .clipShape(RoundedRectangle(cornerRadius: 12, style: .continuous))
-                .shadow(radius: 8)
+                .clipShape(RoundedRectangle(cornerRadius: clipShapeRadius, style: .continuous))
+                .shadow(radius: shadowRadius)
             }
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)

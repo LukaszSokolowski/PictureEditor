@@ -8,8 +8,10 @@
 import SwiftUI
 
 struct GradientButton: ButtonStyle {
+    private let cornerRadius = 8.0
+    
     var buttonStrokeGradient: LinearGradient {
-        LinearGradient(colors: [.init(uiColor: .lightBlue),.init(uiColor: .softBlue)],
+        LinearGradient(colors: [.init(uiColor: .superLightBlue), .init(uiColor: .lightBlue)],
                        startPoint: .topLeading,
                        endPoint: .bottomTrailing)
     }
@@ -19,10 +21,11 @@ struct GradientButton: ButtonStyle {
             .padding(.vertical, Padding.small.rawValue)
             .padding(.horizontal, Padding.normal.rawValue)
             .background(
-                RoundedRectangle(cornerRadius: 8).fill(Color(uiColor: .softBlue))
-            )
+                RoundedRectangle(cornerRadius: cornerRadius)
+                    .fill(buttonStrokeGradient))
             .overlay(
-                RoundedRectangle(cornerRadius: 8).strokeBorder(.black, lineWidth: 1)
+                RoundedRectangle(cornerRadius: cornerRadius)
+                    .strokeBorder(Color(uiColor: .softBlue), lineWidth: 1)
             )
     }
 }
