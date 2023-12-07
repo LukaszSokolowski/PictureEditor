@@ -16,7 +16,8 @@ struct GradientButton: ButtonStyle {
     
     func makeBody(configuration: Configuration) -> some View {
         configuration.label
-            .padding(Padding.small.rawValue)
+            .padding(.vertical, Padding.small.rawValue)
+            .padding(.horizontal, Padding.normal.rawValue)
             .background(
                 Capsule().fill(Color(uiColor: .softBlue))
             )
