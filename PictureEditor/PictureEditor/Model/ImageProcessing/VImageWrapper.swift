@@ -93,16 +93,14 @@ struct VImageWrapper {
                                             UInt8(kRotate270DegreesCounterClockwise),
                                             [0],
                                             vNoFlags)
-        case .blur(let blurWidth, let blurHeight):
-            let oddWidth = UInt32(blurWidth) % 2 == 0 ? UInt32(blurWidth) + 1 : UInt32(blurWidth)
-            let oddHeight = UInt32(blurHeight) % 2 == 0 ? UInt32(blurHeight) + 1 : UInt32(blurHeight)
-            error = vImageTentConvolve_ARGB8888(&imageBuffer,
-                                                &destinationBuffer,
-                                                nil,
-                                                0, 0,
-                                                oddHeight, oddWidth,
-                                                nil,
-                                                vImage_Flags(kvImageEdgeExtend))
+        case .blur(let blurWidth):
+            guard let ciImage = uiImage.ciImage else { return }
+            let blurFilter = CIFilter(name: "CIGaussianBlur")
+            blurFilter?.setValue(ciImage, forKey: kCIInputImageKey)
+            blurFilter?.setValue(blurWidth, forKey: kCIInputRadiusKey)
+            guard let outputImage = blurFilter?.outputImage else { return }
+            processedImage = UIImage(ciImage: outputImage)
+            return
         }
         
         guard error == kvImageNoError else {

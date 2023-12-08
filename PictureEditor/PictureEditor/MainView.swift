@@ -103,7 +103,7 @@ struct MainView: View {
                         }
                         .buttonStyle(GradientButton())
                         Button("Blur effect") {
-                            processedImage = processImageWith(processMethod: .blur(64, 64))
+                            processedImage = processImageWith(processMethod: .blur(32))
                         }
                         .buttonStyle(GradientButton())
                         NavigationLink("Present image information", value: originalImage)
