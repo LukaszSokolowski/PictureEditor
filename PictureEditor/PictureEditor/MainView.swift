@@ -103,7 +103,10 @@ struct MainView: View {
                         }
                         .buttonStyle(GradientButton())
                         Button("Blur effect") {
-                            processedImage = processImageWith(processMethod: .blur(32))
+                            DispatchQueue.main.async {
+                                processedImage = ImageFilters(image: processedImage ?? originalImage).applyBlurFilter(val: 2, filterType: .zoomBlur)
+
+                            }
                         }
                         .buttonStyle(GradientButton())
                         NavigationLink("Present image information", value: originalImage)
@@ -122,7 +125,7 @@ struct MainView: View {
                               confirmAction: {
                         isRevertModalActive = false
                         processedImage = nil
-                    }, 
+                    },
                               cancelAction: {
                         isRevertModalActive = false
                     })

@@ -93,14 +93,6 @@ struct VImageWrapper {
                                             UInt8(kRotate270DegreesCounterClockwise),
                                             [0],
                                             vNoFlags)
-        case .blur(let blurWidth):
-            guard let ciImage = uiImage.ciImage else { return }
-            let blurFilter = CIFilter(name: "CIGaussianBlur")
-            blurFilter?.setValue(ciImage, forKey: kCIInputImageKey)
-            blurFilter?.setValue(blurWidth, forKey: kCIInputRadiusKey)
-            guard let outputImage = blurFilter?.outputImage else { return }
-            processedImage = UIImage(ciImage: outputImage)
-            return
         }
         
         guard error == kvImageNoError else {
