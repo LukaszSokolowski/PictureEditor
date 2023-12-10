@@ -28,6 +28,20 @@ struct MainView: View {
     
     var originalImageTip = OriginalImageTip()
     
+    var revertChangesView: some View {
+        PopupView(title: "Revert to original?",
+                  content: "You cannot undo this action",
+                  confirmButtonTitle: "Revert",
+                  cancelButtonTitle: "Cancel",
+                  confirmAction: {
+            isRevertModalActive = false
+            processedImage = nil
+        },
+                  cancelAction: {
+            isRevertModalActive = false
+        })
+    }
+    
     var body: some View {
         NavigationStack {
             ZStack {
@@ -103,10 +117,7 @@ struct MainView: View {
                         }
                         .buttonStyle(GradientButton())
                         Button("Blur effect") {
-                            DispatchQueue.main.async {
-                                processedImage = ImageFilters(image: processedImage ?? originalImage).applyBlurFilter(val: 2, filterType: .zoomBlur)
-
-                            }
+                            processedImage = ImageFilters(image: processedImage ?? originalImage).applyBlurFilter(val: 2, filterType: .zoomBlur)
                         }
                         .buttonStyle(GradientButton())
                         NavigationLink("Present image information", value: originalImage)
@@ -118,17 +129,7 @@ struct MainView: View {
                     }
                 }
                 if isRevertModalActive {
-                    PopupView(title: "Revert to original?",
-                              content: "You cannot undo this action",
-                              confirmButtonTitle: "Revert",
-                              cancelButtonTitle: "Cancel",
-                              confirmAction: {
-                        isRevertModalActive = false
-                        processedImage = nil
-                    },
-                              cancelAction: {
-                        isRevertModalActive = false
-                    })
+                    revertChangesView
                 }
             }
         }
