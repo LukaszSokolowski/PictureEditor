@@ -7,9 +7,12 @@
 
 import UIKit
 
-enum ImageFilterType: String {
-    case zoomBlur = "CIZoomBlur"
-    case gaussianBlur = "CIGaussianBlur"
+enum BlurType: String {
+    case zoom = "CIZoomBlur"
+    case gaussian = "CIGaussianBlur"
+    case disk = "CIDiscBlur"
+    case box = "CIBoxBlur"
+    case maskedVariable = "CIMaskedVariableBlur"
 }
 
 final class ImageFilters {
@@ -19,19 +22,17 @@ final class ImageFilters {
         self.image = image
     }
     
-    func applyBlurFilter(val: CGFloat, filterType: ImageFilterType) -> UIImage {
+    func applyBlurFilter(val: CGFloat, filterType: BlurType) -> UIImage {
         guard let ciImage = CIImage(image: image) else { return .init() }
         let blurFilter = CIFilter(name: filterType.rawValue)
         blurFilter?.setValue(ciImage, forKey: kCIInputImageKey)
         blurFilter?.setValue(val, forKey: kCIInputRadiusKey)
         
         let rect = ciImage.extent
-        if let output = blurFilter?.outputImage {
-            let context = CIContext(options: nil)
-            if let cgimg = context.createCGImage(output, from: rect) {
-                let processedImage = UIImage(cgImage: cgimg)
-                return processedImage
-            }
+        let context = CIContext(options: nil)
+        if let output = blurFilter?.outputImage,
+           let cgimg = context.createCGImage(output, from: rect) {
+            return UIImage(cgImage: cgimg)
         }
         fatalError()
     }

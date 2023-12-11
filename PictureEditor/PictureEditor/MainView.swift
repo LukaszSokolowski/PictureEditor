@@ -21,6 +21,7 @@ struct MainView: View {
     @State private var imageSelection: PhotosPickerItem?
     @State private var pressesTheImage: Bool = false
     @State private var isRevertModalActive: Bool = false
+    @State private var isBlurSeelctionAvtive: Bool = false
     
     var bottomContainerImage: UIImage {
         pressesTheImage ? originalImage : processedImage ?? originalImage
@@ -116,8 +117,32 @@ struct MainView: View {
                             processedImage = processImageWith(processMethod: .rotateRight)
                         }
                         .buttonStyle(GradientButton())
-                        Button("Blur effect") {
-                            processedImage = ImageFilters(image: processedImage ?? originalImage).applyBlurFilter(val: 2, filterType: .zoomBlur)
+                        
+                        if isBlurSeelctionAvtive {
+                            VStack {
+                                Text("Blur type")
+                                HStack {
+                                    Button("Zoom") {
+                                        processedImage = ImageFilters(image: processedImage ?? originalImage).applyBlurFilter(val: 2, filterType: .zoom)
+                                    }.buttonStyle(GradientButton())
+                                    Button("Gaussian") {
+                                        processedImage = ImageFilters(image: processedImage ?? originalImage).applyBlurFilter(val: 2, filterType: .gaussian)
+                                    }.buttonStyle(GradientButton())
+                                    Button("Disk") {
+                                        processedImage = ImageFilters(image: processedImage ?? originalImage).applyBlurFilter(val: 20, filterType: .disk)
+                                    }.buttonStyle(GradientButton())
+                                    Button("Box") {
+                                        processedImage = ImageFilters(image: processedImage ?? originalImage).applyBlurFilter(val: 22, filterType: .box)
+                                    }.buttonStyle(GradientButton())
+                                    Button("MaskedVariable") {
+                                        processedImage = ImageFilters(image: processedImage ?? originalImage).applyBlurFilter(val: 22, filterType: .maskedVariable)
+                                    }.buttonStyle(GradientButton())
+                                }
+                            }
+                        }
+                        
+                        Button("Blur options") {
+                            isBlurSeelctionAvtive.toggle()
                         }
                         .buttonStyle(GradientButton())
                         NavigationLink("Present image information", value: originalImage)
