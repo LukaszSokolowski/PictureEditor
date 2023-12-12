@@ -7,12 +7,27 @@
 
 import UIKit
 
-enum BlurType: String {
+enum BlurType: String, CaseIterable {
     case zoom = "CIZoomBlur"
     case gaussian = "CIGaussianBlur"
     case disk = "CIDiscBlur"
     case box = "CIBoxBlur"
     case maskedVariable = "CIMaskedVariableBlur"
+    
+    var name: String {
+        switch self {
+        case .zoom:
+            return "Zoom"
+        case .gaussian:
+            return "Gaussian"
+        case .disk:
+            return "Disk"
+        case .box:
+            return "Box"
+        case .maskedVariable:
+            return "Masked"
+        }
+    }
 }
 
 final class ImageFilters {

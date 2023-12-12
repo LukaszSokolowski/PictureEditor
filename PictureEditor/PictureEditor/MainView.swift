@@ -10,6 +10,12 @@ import PhotosUI
 import TipKit
 
 struct MainView: View {
+    
+    let columns = [
+        GridItem(.adaptive(minimum: 72)),
+        GridItem(.adaptive(minimum: 72)),
+    ]
+    
     @State private var originalImage = UIImage(imageLiteralResourceName: "RockyTheDoge")
     @State private var processedImage: UIImage? {
         didSet {
@@ -119,24 +125,16 @@ struct MainView: View {
                         .buttonStyle(GradientButton())
                         
                         if isBlurSeelctionAvtive {
-                            VStack {
-                                Text("Blur type")
-                                HStack {
-                                    Button("Zoom") {
-                                        processedImage = ImageFilters(image: processedImage ?? originalImage).applyBlurFilter(val: 2, filterType: .zoom)
-                                    }.buttonStyle(GradientButton())
-                                    Button("Gaussian") {
-                                        processedImage = ImageFilters(image: processedImage ?? originalImage).applyBlurFilter(val: 2, filterType: .gaussian)
-                                    }.buttonStyle(GradientButton())
-                                    Button("Disk") {
-                                        processedImage = ImageFilters(image: processedImage ?? originalImage).applyBlurFilter(val: 20, filterType: .disk)
-                                    }.buttonStyle(GradientButton())
-                                    Button("Box") {
-                                        processedImage = ImageFilters(image: processedImage ?? originalImage).applyBlurFilter(val: 22, filterType: .box)
-                                    }.buttonStyle(GradientButton())
-                                    Button("MaskedVariable") {
-                                        processedImage = ImageFilters(image: processedImage ?? originalImage).applyBlurFilter(val: 22, filterType: .maskedVariable)
-                                    }.buttonStyle(GradientButton())
+                            VStack(spacing: .zero) {
+                                Text("Select blur")
+                                GeometryReader { geometry in //TODO: 
+                                    LazyVGrid(columns: columns, alignment: .center, spacing: Padding.normal.rawValue) {
+                                        ForEach(BlurType.allCases, id: \.self) { item in
+                                            Button(item.name) {
+                                                processedImage = ImageFilters(image: processedImage ?? originalImage).applyBlurFilter(val: 2, filterType: item)
+                                            }.frame(maxWidth: .infinity, maxHeight: .infinity).border(.black)
+                                        }
+                                    }
                                 }
                             }
                         }
