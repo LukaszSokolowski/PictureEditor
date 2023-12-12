@@ -125,16 +125,20 @@ struct MainView: View {
                         .buttonStyle(GradientButton())
                         
                         if isBlurSeelctionAvtive {
-                            VStack(spacing: .zero) {
-                                Text("Select blur")
-                                GeometryReader { geometry in //TODO: 
-                                    LazyVGrid(columns: columns, alignment: .center, spacing: Padding.normal.rawValue) {
-                                        ForEach(BlurType.allCases, id: \.self) { item in
-                                            Button(item.name) {
-                                                processedImage = ImageFilters(image: processedImage ?? originalImage).applyBlurFilter(val: 2, filterType: item)
-                                            }.frame(maxWidth: .infinity, maxHeight: .infinity).border(.black)
+                            GeometryReader { geometryReader in
+                                VStack(spacing: .zero) {
+                                    Text("Select blur")
+                                    ScrollView(.horizontal) {
+                                        HStack(spacing: Padding.small.rawValue) {
+                                            ForEach(BlurType.allCases, id: \.self) { blur in
+                                                Button(blur.name) {
+                                                    processedImage = ImageFilters(image: processedImage ?? originalImage).applyBlurFilter(val: 2, filterType: blur)
+                                                }
+                                                .buttonStyle(GradientButton())
+                                            }
                                         }
                                     }
+                                    .frame(width: geometryReader.size.width, height: 64.0)
                                 }
                             }
                         }
