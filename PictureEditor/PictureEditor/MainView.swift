@@ -123,7 +123,7 @@ struct MainView: View {
                     }
                     VStack {
                         if #available(iOS 17.0, *) {
-                           tipView
+                            tipView
                         }
                         Image(uiImage: bottomContainerImage)
                             .resizable()
@@ -167,7 +167,7 @@ struct MainView: View {
                         
                         VStack {
                             if activeFilter != nil {
-                               filterStrengthView
+                                filterStrengthView
                             }
                             ForEach(FilterType.allCases, id: \.self) { filter in
                                 Button(filter.name) {
@@ -184,6 +184,11 @@ struct MainView: View {
                             isBlurSelectionAvtive.toggle()
                         }
                         .buttonStyle(GradientButton())
+                        Button("Save image") {
+                            let imageSaver = ImageSaver()
+                            imageSaver.writeToPhotoAlbum(image: processedImage ?? originalImage)
+                        }.buttonStyle(GradientButton())
+                        
                         NavigationLink("Present image information", value: originalImage)
                             .buttonStyle(.bordered)
                             .foregroundColor(.black)
@@ -243,5 +248,16 @@ private extension MainView {
 struct MainView_Previews: PreviewProvider {
     static var previews: some View {
         MainView()
+    }
+}
+
+
+final class ImageSaver: NSObject {
+    func writeToPhotoAlbum(image: UIImage) {
+        UIImageWriteToSavedPhotosAlbum(image, self, #selector(saveCompleted), nil)
+    }
+    
+    @objc func saveCompleted(_ image: UIImage, didFinishSavingWithError error: Error?, contextInfo: UnsafeRawPointer) {
+        print("Save finished!")
     }
 }
