@@ -12,7 +12,7 @@ enum BlurType: String, CaseIterable {
     case gaussian = "CIGaussianBlur"
     case disk = "CIDiscBlur"
     case box = "CIBoxBlur"
-    case maskedVariable = "CIMaskedVariableBlur"
+    case motion = "CIMotionBlur"
     
     var name: String {
         switch self {
@@ -24,8 +24,8 @@ enum BlurType: String, CaseIterable {
             return "Disk"
         case .box:
             return "Box"
-        case .maskedVariable:
-            return "Masked"
+        case .motion:
+            return "Motion"
         }
     }
 }

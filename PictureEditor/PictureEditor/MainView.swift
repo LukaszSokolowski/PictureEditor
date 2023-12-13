@@ -27,7 +27,7 @@ struct MainView: View {
     @State private var imageSelection: PhotosPickerItem?
     @State private var pressesTheImage: Bool = false
     @State private var isRevertModalActive: Bool = false
-    @State private var isBlurSeelctionAvtive: Bool = false
+    @State private var isBlurSelectionAvtive: Bool = false
     
     var bottomContainerImage: UIImage {
         pressesTheImage ? originalImage : processedImage ?? originalImage
@@ -124,27 +124,27 @@ struct MainView: View {
                         }
                         .buttonStyle(GradientButton())
                         
-                        if isBlurSeelctionAvtive {
+                        if isBlurSelectionAvtive {
                             GeometryReader { geometryReader in
-                                VStack(spacing: .zero) {
+                                VStack(spacing: Padding.small.rawValue) {
                                     Text("Select blur")
                                     ScrollView(.horizontal) {
                                         HStack(spacing: Padding.small.rawValue) {
                                             ForEach(BlurType.allCases, id: \.self) { blur in
                                                 Button(blur.name) {
-                                                    processedImage = ImageFilters(image: processedImage ?? originalImage).applyBlurFilter(val: 2, filterType: blur)
+                                                    processedImage = ImageFilters(image: processedImage ?? originalImage).applyBlurFilter(val: 32, filterType: blur)
                                                 }
                                                 .buttonStyle(GradientButton())
                                             }
                                         }
                                     }
-                                    .frame(width: geometryReader.size.width, height: 64.0)
-                                }
-                            }
+                                    .scrollIndicators(.hidden)
+                                }.frame(width: geometryReader.size.width)
+                            }.frame(height: 64.0)
                         }
                         
                         Button("Blur options") {
-                            isBlurSeelctionAvtive.toggle()
+                            isBlurSelectionAvtive.toggle()
                         }
                         .buttonStyle(GradientButton())
                         NavigationLink("Present image information", value: originalImage)
