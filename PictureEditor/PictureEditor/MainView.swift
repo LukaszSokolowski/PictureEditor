@@ -49,6 +49,17 @@ struct MainView: View {
         })
     }
     
+    @available(iOS 17.0, *)
+    var tipView: some View {
+        TipView(originalImageTip,
+                arrowEdge: .bottom)
+        .tint(.black)
+        .tipBackground(.teal.opacity(0.2))
+        .tipImageSize(CGSize(width: UIConstants.iconSize,
+                             height: UIConstants.iconSize))
+        .padding(.horizontal, Padding.small.rawValue)
+    }
+    
     var body: some View {
         NavigationStack {
             ZStack {
@@ -75,13 +86,7 @@ struct MainView: View {
                     }
                     VStack {
                         if #available(iOS 17.0, *) {
-                            TipView(originalImageTip,
-                                    arrowEdge: .bottom)
-                            .tint(.black)
-                            .tipBackground(.teal.opacity(0.2))
-                            .tipImageSize(CGSize(width: UIConstants.iconSize,
-                                                 height: UIConstants.iconSize))
-                            .padding(.horizontal, Padding.small.rawValue)
+                           tipView
                         }
                         Image(uiImage: bottomContainerImage)
                             .resizable()
@@ -132,7 +137,7 @@ struct MainView: View {
                                         HStack(spacing: Padding.small.rawValue) {
                                             ForEach(BlurType.allCases, id: \.self) { blur in
                                                 Button(blur.name) {
-                                                    processedImage = ImageFilters(image: processedImage ?? originalImage).applyBlurFilter(val: 32, filterType: blur)
+                                                    processedImage = Blur(image: processedImage ?? originalImage).applyBlurFilter(val: 32, filterType: blur)
                                                 }
                                                 .buttonStyle(GradientButton())
                                             }
@@ -141,6 +146,14 @@ struct MainView: View {
                                     .scrollIndicators(.hidden)
                                 }.frame(width: geometryReader.size.width)
                             }.frame(height: 64.0)
+                        }
+                        
+                        VStack {
+                            ForEach(FilterType.allCases, id: \.self) { blur in
+                                Button(blur.name) {
+                                    processedImage = ImageFilters(image: processedImage ?? originalImage).applyBlurFilter(val: 32, filterType: blur)
+                                }.buttonStyle(GradientButton())
+                            }
                         }
                         
                         Button("Blur options") {

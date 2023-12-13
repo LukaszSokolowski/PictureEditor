@@ -30,7 +30,7 @@ enum BlurType: String, CaseIterable {
     }
 }
 
-final class ImageFilters {
+final class Blur {
     let image: UIImage
     
     init(image: UIImage) {
