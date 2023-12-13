@@ -10,12 +10,6 @@ import PhotosUI
 import TipKit
 
 struct MainView: View {
-    
-    let columns = [
-        GridItem(.adaptive(minimum: 72)),
-        GridItem(.adaptive(minimum: 72)),
-    ]
-    
     @State private var originalImage = UIImage(imageLiteralResourceName: "RockyTheDoge")
     @State private var processedImage: UIImage? {
         didSet {
@@ -28,6 +22,7 @@ struct MainView: View {
     @State private var pressesTheImage: Bool = false
     @State private var isRevertModalActive: Bool = false
     @State private var isBlurSelectionAvtive: Bool = false
+    @State private var activeFilter: FilterType? = nil
     
     var bottomContainerImage: UIImage {
         pressesTheImage ? originalImage : processedImage ?? originalImage
@@ -58,6 +53,48 @@ struct MainView: View {
         .tipImageSize(CGSize(width: UIConstants.iconSize,
                              height: UIConstants.iconSize))
         .padding(.horizontal, Padding.small.rawValue)
+    }
+    
+    var filterStrengthView: some View {
+        HStack {
+            Button("Soft") {
+                let imageFilters = ImageFilters(image: originalImage)
+                processedImage = imageFilters.applyBlurFilter(filterType: activeFilter!, filterStrength: .soft)
+            }.buttonStyle(GradientButton())
+            Button("Medium") {
+                let imageFilters = ImageFilters(image: originalImage)
+                processedImage = imageFilters.applyBlurFilter(filterType: activeFilter!, filterStrength: .medium)
+            }.buttonStyle(GradientButton())
+            Button("Hard") {
+                let imageFilters = ImageFilters(image: originalImage)
+                processedImage = imageFilters.applyBlurFilter(filterType: activeFilter!, filterStrength: .hard)
+            }.buttonStyle(GradientButton())
+        }
+    }
+    
+    var mainActionsView: some View {
+        VStack {
+            Button("Equalize histogram") {
+                processedImage = processImageWith(processMethod: .equalizeHistogram)
+            }
+            .buttonStyle(GradientButton())
+            Button("Horizontal reflect") {
+                processedImage = processImageWith(processMethod: .horizontalReflection)
+            }
+            .buttonStyle(GradientButton())
+            Button("Vertical reflect") {
+                processedImage = processImageWith(processMethod: .verticalReflection)
+            }
+            .buttonStyle(GradientButton())
+            Button("Rotate left") {
+                processedImage = processImageWith(processMethod: .rotateLeft)
+            }
+            .buttonStyle(GradientButton())
+            Button("Rotate right") {
+                processedImage = processImageWith(processMethod: .rotateRight)
+            }
+            .buttonStyle(GradientButton())
+        }
     }
     
     var body: some View {
@@ -108,27 +145,7 @@ struct MainView: View {
                     }
                     Spacer()
                     VStack {
-                        Button("Equalize histogram") {
-                            processedImage = processImageWith(processMethod: .equalizeHistogram)
-                        }
-                        .buttonStyle(GradientButton())
-                        Button("Horizontal reflect") {
-                            processedImage = processImageWith(processMethod: .horizontalReflection)
-                        }
-                        .buttonStyle(GradientButton())
-                        Button("Vertical reflect") {
-                            processedImage = processImageWith(processMethod: .verticalReflection)
-                        }
-                        .buttonStyle(GradientButton())
-                        Button("Rotate left") {
-                            processedImage = processImageWith(processMethod: .rotateLeft)
-                        }
-                        .buttonStyle(GradientButton())
-                        Button("Rotate right") {
-                            processedImage = processImageWith(processMethod: .rotateRight)
-                        }
-                        .buttonStyle(GradientButton())
-                        
+                        mainActionsView
                         if isBlurSelectionAvtive {
                             GeometryReader { geometryReader in
                                 VStack(spacing: Padding.small.rawValue) {
@@ -149,9 +166,16 @@ struct MainView: View {
                         }
                         
                         VStack {
-                            ForEach(FilterType.allCases, id: \.self) { blur in
-                                Button(blur.name) {
-                                    processedImage = ImageFilters(image: processedImage ?? originalImage).applyBlurFilter(val: 32, filterType: blur)
+                            if activeFilter != nil {
+                               filterStrengthView
+                            }
+                            ForEach(FilterType.allCases, id: \.self) { filter in
+                                Button(filter.name) {
+                                    if activeFilter == nil {
+                                        activeFilter = filter
+                                    } else {
+                                        activeFilter = nil
+                                    }
                                 }.buttonStyle(GradientButton())
                             }
                         }

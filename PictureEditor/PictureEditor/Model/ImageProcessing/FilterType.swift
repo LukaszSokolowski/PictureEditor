@@ -7,6 +7,12 @@
 
 import UIKit
 
+enum FilterStrength {
+    case soft
+    case medium
+    case hard
+}
+
 enum FilterType: String, CaseIterable {
     case colorClamp = "CIColorClamp"
     
@@ -25,16 +31,24 @@ final class ImageFilters {
         self.image = image
     }
     
-    func applyBlurFilter(val: CGFloat, filterType: FilterType) -> UIImage {
+    func applyBlurFilter(val: CGFloat = 0, filterType: FilterType, filterStrength: FilterStrength = .medium) -> UIImage {
         guard let ciImage = CIImage(image: image) else { return .init() }
         let blurFilter = CIFilter(name: filterType.rawValue)
         
         switch filterType {
         case .colorClamp:
             blurFilter?.setValue(ciImage, forKey: kCIInputImageKey)
-            blurFilter?.setValue(CIVector(x: 0.1, y: 0.1, z: 0.1, w: 0), forKey: "inputMinComponents")
-            blurFilter?.setValue(CIVector(x: 0.3, y: 0.3, z: 0.3, w: 1), forKey: "inputMaxComponents")
-
+            switch filterStrength {
+            case .soft:
+                blurFilter?.setValue(CIVector(x: 0.1, y: 0.1, z: 0.1, w: 0), forKey: "inputMinComponents")
+                blurFilter?.setValue(CIVector(x: 0.9, y: 0.9, z: 0.9, w: 1), forKey: "inputMaxComponents")
+            case .medium:
+                blurFilter?.setValue(CIVector(x: 0.1, y: 0.1, z: 0.1, w: 0), forKey: "inputMinComponents")
+                blurFilter?.setValue(CIVector(x: 0.6, y: 0.6, z: 0.6, w: 1), forKey: "inputMaxComponents")
+            case .hard:
+                blurFilter?.setValue(CIVector(x: 0.1, y: 0.1, z: 0.1, w: 0), forKey: "inputMinComponents")
+                blurFilter?.setValue(CIVector(x: 0.4, y: 0.4, z: 0.4, w: 1), forKey: "inputMaxComponents")
+            }
         }
         
         let rect = ciImage.extent
