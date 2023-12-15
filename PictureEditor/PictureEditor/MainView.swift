@@ -21,6 +21,7 @@ struct MainView: View {
     @State private var imageSelection: PhotosPickerItem?
     @State private var pressesTheImage: Bool = false
     @State private var isRevertModalActive: Bool = false
+    @State private var isExportModalActive: Bool = false
     @State private var isBlurSelectionAvtive: Bool = false
     @State private var activeFilter: FilterType? = nil
     
@@ -41,6 +42,21 @@ struct MainView: View {
         },
                   cancelAction: {
             isRevertModalActive = false
+        })
+    }
+    
+    var exportImageModalView: some View {
+        PopupView(title: "Export Image?",
+                  content: nil,
+                  confirmButtonTitle: "OK",
+                  cancelButtonTitle: "Cancel",
+                  confirmAction: {
+            isExportModalActive = false
+            let imageSaver = ImageSaver()
+            imageSaver.writeToPhotoAlbum(image: processedImage ?? originalImage)
+        },
+                  cancelAction: {
+            isExportModalActive = false
         })
     }
     
@@ -184,9 +200,8 @@ struct MainView: View {
                             isBlurSelectionAvtive.toggle()
                         }
                         .buttonStyle(GradientButton())
-                        Button("Save image") {
-                            let imageSaver = ImageSaver()
-                            imageSaver.writeToPhotoAlbum(image: processedImage ?? originalImage)
+                        Button("Export image") {
+                            isExportModalActive = true
                         }.buttonStyle(GradientButton())
                         
                         NavigationLink("Present image information", value: originalImage)
@@ -199,6 +214,9 @@ struct MainView: View {
                 }
                 if isRevertModalActive {
                     revertChangesView
+                }
+                if isExportModalActive {
+                    exportImageModalView
                 }
             }
         }
