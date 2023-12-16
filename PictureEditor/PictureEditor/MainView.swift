@@ -110,6 +110,11 @@ struct MainView: View {
                 processedImage = processImageWith(processMethod: .rotateRight)
             }
             .buttonStyle(GradientButton())
+            Button("Color Controls") {
+                let imageFilters = ImageFilters(image: originalImage)
+                processedImage = imageFilters.applyBlurFilter(filterType: .colorControls, filterStrength: .medium)
+            }
+            .buttonStyle(GradientButton())
         }
     }
     

@@ -15,11 +15,14 @@ enum FilterStrength {
 
 enum FilterType: String, CaseIterable {
     case colorClamp = "CIColorClamp"
+    case colorControls = "CIColorControls"
     
     var name: String {
         switch self {
         case .colorClamp:
             return "Color Clamp"
+        case .colorControls:
+            return "Color Controls"
         }
     }
 }
@@ -49,6 +52,11 @@ final class ImageFilters {
                 blurFilter?.setValue(CIVector(x: 0.1, y: 0.1, z: 0.1, w: 0), forKey: "inputMinComponents")
                 blurFilter?.setValue(CIVector(x: 0.4, y: 0.4, z: 0.4, w: 1), forKey: "inputMaxComponents")
             }
+        case .colorControls:
+            blurFilter?.setValue(ciImage, forKey: kCIInputImageKey)
+            blurFilter?.setValue(2.8, forKey: "inputSaturation")
+            blurFilter?.setValue(0.8, forKey: "inputBrightness")
+            blurFilter?.setValue(0.8, forKey: "inputContrast")
         }
         
         let rect = ciImage.extent
