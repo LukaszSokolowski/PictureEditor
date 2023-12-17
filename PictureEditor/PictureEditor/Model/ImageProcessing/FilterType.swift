@@ -54,9 +54,20 @@ final class ImageFilters {
             }
         case .colorControls:
             blurFilter?.setValue(ciImage, forKey: kCIInputImageKey)
-            blurFilter?.setValue(2.8, forKey: "inputSaturation")
-            blurFilter?.setValue(0.8, forKey: "inputBrightness")
-            blurFilter?.setValue(0.8, forKey: "inputContrast")
+            switch filterStrength {
+            case .soft:
+                blurFilter?.setValue(1.3, forKey: "inputSaturation")
+                blurFilter?.setValue(0.8, forKey: "inputBrightness")
+                blurFilter?.setValue(0.8, forKey: "inputContrast")
+            case .medium:
+                blurFilter?.setValue(2.0, forKey: "inputSaturation")
+                blurFilter?.setValue(0.8, forKey: "inputBrightness")
+                blurFilter?.setValue(0.8, forKey: "inputContrast")
+            case .hard:
+                blurFilter?.setValue(2.8, forKey: "inputSaturation")
+                blurFilter?.setValue(0.8, forKey: "inputBrightness")
+                blurFilter?.setValue(0.7, forKey: "inputContrast")
+            }
         }
         
         let rect = ciImage.extent
