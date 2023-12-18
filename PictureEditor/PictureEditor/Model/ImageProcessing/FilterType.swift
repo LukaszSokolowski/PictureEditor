@@ -16,6 +16,7 @@ enum FilterStrength {
 enum FilterType: String, CaseIterable {
     case colorClamp = "CIColorClamp"
     case colorControls = "CIColorControls"
+    case exposureAdjust = "CIExposureAdjust"
     
     var name: String {
         switch self {
@@ -23,6 +24,8 @@ enum FilterType: String, CaseIterable {
             return "Color Clamp"
         case .colorControls:
             return "Color Controls"
+        case .exposureAdjust:
+            return "Exposure adjust"
         }
     }
 }
@@ -34,7 +37,7 @@ final class ImageFilters {
         self.image = image
     }
     
-    func applyBlurFilter(val: CGFloat = 0, filterType: FilterType, filterStrength: FilterStrength = .medium) -> UIImage {
+    func applyFilter(val: CGFloat = 0, filterType: FilterType, filterStrength: FilterStrength = .medium) -> UIImage {
         guard let ciImage = CIImage(image: image) else { return .init() }
         let blurFilter = CIFilter(name: filterType.rawValue)
         
@@ -67,6 +70,16 @@ final class ImageFilters {
                 blurFilter?.setValue(2.8, forKey: "inputSaturation")
                 blurFilter?.setValue(0.8, forKey: "inputBrightness")
                 blurFilter?.setValue(0.7, forKey: "inputContrast")
+            }
+        case .exposureAdjust:
+            blurFilter?.setValue(ciImage, forKey: kCIInputImageKey)
+            switch filterStrength {
+            case .soft:
+                blurFilter?.setValue(0.8, forKey: "inputEV")
+            case .medium:
+                blurFilter?.setValue(1.0, forKey: "inputEV")
+            case .hard:
+                blurFilter?.setValue(1.5, forKey: "inputEV")
             }
         }
         

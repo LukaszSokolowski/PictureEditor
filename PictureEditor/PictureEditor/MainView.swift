@@ -75,15 +75,15 @@ struct MainView: View {
         HStack {
             Button("Soft") {
                 let imageFilters = ImageFilters(image: originalImage)
-                processedImage = imageFilters.applyBlurFilter(filterType: activeFilter!, filterStrength: .soft)
+                processedImage = imageFilters.applyFilter(filterType: activeFilter!, filterStrength: .soft)
             }.buttonStyle(GradientButton())
             Button("Medium") {
                 let imageFilters = ImageFilters(image: originalImage)
-                processedImage = imageFilters.applyBlurFilter(filterType: activeFilter!, filterStrength: .medium)
+                processedImage = imageFilters.applyFilter(filterType: activeFilter!, filterStrength: .medium)
             }.buttonStyle(GradientButton())
             Button("Hard") {
                 let imageFilters = ImageFilters(image: originalImage)
-                processedImage = imageFilters.applyBlurFilter(filterType: activeFilter!, filterStrength: .hard)
+                processedImage = imageFilters.applyFilter(filterType: activeFilter!, filterStrength: .hard)
             }.buttonStyle(GradientButton())
         }
     }
@@ -108,11 +108,6 @@ struct MainView: View {
             .buttonStyle(GradientButton())
             Button("Rotate right") {
                 processedImage = processImageWith(processMethod: .rotateRight)
-            }
-            .buttonStyle(GradientButton())
-            Button("Color Controls") {
-                let imageFilters = ImageFilters(image: originalImage)
-                processedImage = imageFilters.applyBlurFilter(filterType: .colorControls, filterStrength: .medium)
             }
             .buttonStyle(GradientButton())
         }
