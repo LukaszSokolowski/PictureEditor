@@ -19,6 +19,7 @@ struct PageViewController<Page: View>: UIViewControllerRepresentable {
         let pageViewController = UIPageViewController(
             transitionStyle: .scroll,
             navigationOrientation: .horizontal)
+        pageViewController.dataSource = context.coordinator
         return pageViewController
     }
     
@@ -27,7 +28,7 @@ struct PageViewController<Page: View>: UIViewControllerRepresentable {
             [context.coordinator.controllers[0]], direction: .forward, animated: true)
     }
     
-    class Coordinator: NSObject {
+    class Coordinator: NSObject, UIPageViewControllerDataSource {
         var parent: PageViewController
         var controllers = [UIViewController]()
         
@@ -35,5 +36,19 @@ struct PageViewController<Page: View>: UIViewControllerRepresentable {
             parent = pageViewController
             controllers = parent.pages.map { UIHostingController(rootView: $0) }
         }
+        
+        func pageViewController(
+            _ pageViewController: UIPageViewController,
+            viewControllerBefore viewController: UIViewController) -> UIViewController? {
+                guard let index = controllers.firstIndex(of: viewController) else { return nil }
+                return index == 0 ? controllers.last : controllers[index - 1]
+            }
+        
+        func pageViewController(
+            _ pageViewController: UIPageViewController,
+            viewControllerAfter viewController: UIViewController) -> UIViewController? {
+                guard let index = controllers.firstIndex(of: viewController) else { return nil }
+                return index + 1 == controllers.count ? controllers.first : controllers[index + 1]
+            }
     }
 }
