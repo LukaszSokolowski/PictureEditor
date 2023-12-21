@@ -43,7 +43,7 @@ struct ImageInfoView: View {
                 Text("Image height: " + imageHeight)
                 Text("Image color space: " + colorSpace)
                 Text("Alpha channel: " + alphaChannel)
-                PageView(pages: [Text("Page1"), Text("Page2"), Text("Page3")])
+                PageView(pages: [PageOption(), PageOption(), PageOption()])
             }
         }
     }

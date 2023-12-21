@@ -37,6 +37,7 @@
 		21CE5CEC2B1FF43C00C11DDC /* GradientButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21CE5CEB2B1FF43C00C11DDC /* GradientButton.swift */; };
 		21CF59412B30A8CE00F8C0E9 /* PageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21CF59402B30A8CE00F8C0E9 /* PageViewController.swift */; };
 		21CF59442B31F67E00F8C0E9 /* PageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21CF59432B31F67E00F8C0E9 /* PageView.swift */; };
+		21E67AE22B34A53500E14680 /* PageOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21E67AE12B34A53500E14680 /* PageOption.swift */; };
 		21F1A2262B1D345200895878 /* Tips.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21F1A2252B1D345200895878 /* Tips.swift */; };
 		35D689F5A8363C81315D2FB8 /* Pods_PictureEditorTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E0746081AEF0FE7EF7F57A4 /* Pods_PictureEditorTests.framework */; };
 		360A13E43F4B5895CB227E53 /* Pods_PictureEditor_PictureEditorUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52E13780CCAD032B9CF90CE2 /* Pods_PictureEditor_PictureEditorUITests.framework */; };
@@ -111,6 +112,7 @@
 		21CE5CEB2B1FF43C00C11DDC /* GradientButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientButton.swift; sourceTree = "<group>"; };
 		21CF59402B30A8CE00F8C0E9 /* PageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageViewController.swift; sourceTree = "<group>"; };
 		21CF59432B31F67E00F8C0E9 /* PageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageView.swift; sourceTree = "<group>"; };
+		21E67AE12B34A53500E14680 /* PageOption.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageOption.swift; sourceTree = "<group>"; };
 		21F1A2252B1D345200895878 /* Tips.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tips.swift; sourceTree = "<group>"; };
 		2B457DAF3E9896FC8B7F10A6 /* Pods-PictureEditorTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PictureEditorTests.release.xcconfig"; path = "Target Support Files/Pods-PictureEditorTests/Pods-PictureEditorTests.release.xcconfig"; sourceTree = "<group>"; };
 		52E13780CCAD032B9CF90CE2 /* Pods_PictureEditor_PictureEditorUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PictureEditor_PictureEditorUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -322,9 +324,18 @@
 		21CF59422B31F67300F8C0E9 /* PageView */ = {
 			isa = PBXGroup;
 			children = (
+				21E67AE02B34A52000E14680 /* PageOption */,
 				21CF59432B31F67E00F8C0E9 /* PageView.swift */,
 			);
 			path = PageView;
+			sourceTree = "<group>";
+		};
+		21E67AE02B34A52000E14680 /* PageOption */ = {
+			isa = PBXGroup;
+			children = (
+				21E67AE12B34A53500E14680 /* PageOption.swift */,
+			);
+			path = PageOption;
 			sourceTree = "<group>";
 		};
 		21F1A2272B1D356800895878 /* Tips */ = {
@@ -575,6 +586,7 @@
 				214D02472B2120D7005A53A9 /* BlurEffect.swift in Sources */,
 				219267C92B100D9C0089D273 /* UIConstants.swift in Sources */,
 				21B50C0428F9FFFA001DB5B9 /* PictureEditor.xcdatamodeld in Sources */,
+				21E67AE22B34A53500E14680 /* PageOption.swift in Sources */,
 				2196B3022B2A57A900089E0E /* FilterType.swift in Sources */,
 				21CE5CE92B1FD6D500C11DDC /* BackgroundGradient.swift in Sources */,
 				21CF59412B30A8CE00F8C0E9 /* PageViewController.swift in Sources */,
