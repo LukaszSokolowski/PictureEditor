@@ -209,7 +209,7 @@ struct MainView: View {
                             .foregroundColor(.black)
                             .padding(EdgeInsets(top: Padding.normal.rawValue, leading: .zero, bottom: .zero, trailing: .zero))
                     }.navigationDestination(for: UIImage.self) { originalImage in
-                        ImageInfoView(passedImage: originalImage)
+                        ImageInfoView(processedImage: originalImage)
                     }
                 }
                 if isRevertModalActive {

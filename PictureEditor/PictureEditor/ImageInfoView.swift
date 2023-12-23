@@ -9,23 +9,24 @@ import SwiftUI
 import ImageIO
 
 struct ImageInfoView: View {
-    let passedImage: UIImage
+    let processedImage: UIImage
     
-    init(passedImage: UIImage) {
-        self.passedImage = passedImage
+    init(processedImage: UIImage) {
+        self.processedImage = processedImage
     }
     
     var imageWidth: String {
-        NumberFormatter().string(from: passedImage.cgImage!.width as NSNumber) ?? ""
+        guard let width = processedImage.cgImage?.width as? NSNumber else { return "" }
+        return NumberFormatter().string(from: width) ?? ""
     }
     
     var imageHeight: String {
-        NumberFormatter().string(from: passedImage.cgImage!.height as NSNumber) ?? ""
+        guard let height = processedImage.cgImage?.height as? NSNumber else { return ""}
+        return NumberFormatter().string(from: height) ?? ""
     }
     
     var colorSpace: String {
-        //TODO: do some switch case here (create w class outside view)
-        guard let colorSpace = passedImage.cgImage?.colorSpace else { return "Unknown" }
+        guard let colorSpace = processedImage.cgImage?.colorSpace else { return "Unknown" }
         if colorSpace == CGColorSpace(name: CGColorSpace.sRGB) { return "sRGB" }
         if colorSpace == CGColorSpace(name: CGColorSpace.displayP3) { return "DisplayP3" }
         return "Unknown"
@@ -43,7 +44,9 @@ struct ImageInfoView: View {
                 Text("Image height: " + imageHeight)
                 Text("Image color space: " + colorSpace)
                 Text("Alpha channel: " + alphaChannel)
-                PageView(pages: [PageOption(), PageOption(), PageOption()])
+                PageView(pages: [PageOption(processedImage: processedImage),
+                                 PageOption(processedImage: processedImage),
+                                 PageOption(processedImage: processedImage)])
             }
         }
     }
@@ -51,7 +54,7 @@ struct ImageInfoView: View {
 
 struct ImageInfoView_Previews: PreviewProvider {
     static var previews: some View {
-        ImageInfoView(passedImage: .init())
+        ImageInfoView(processedImage: .init())
     }
 }
 
