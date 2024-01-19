@@ -7,6 +7,11 @@
 
 import UIKit
 
+enum FilterValueKey: String {
+    case inputMinComponents = "inputMinComponents"
+    case inputMaxComponents = "inputMaxComponents"
+}
+
 enum FilterStrength {
     case soft
     case medium
@@ -46,14 +51,14 @@ final class ImageFilters {
             blurFilter?.setValue(ciImage, forKey: kCIInputImageKey)
             switch filterStrength {
             case .soft:
-                blurFilter?.setValue(CIVector(x: 0.1, y: 0.1, z: 0.1, w: 0), forKey: "inputMinComponents")
-                blurFilter?.setValue(CIVector(x: 0.9, y: 0.9, z: 0.9, w: 1), forKey: "inputMaxComponents")
+                blurFilter?.setValue(CIVector(x: 0.1, y: 0.1, z: 0.1, w: 0), forKey: FilterValueKey.inputMinComponents.rawValue)
+                blurFilter?.setValue(CIVector(x: 0.9, y: 0.9, z: 0.9, w: 1), forKey: FilterValueKey.inputMaxComponents.rawValue)
             case .medium:
-                blurFilter?.setValue(CIVector(x: 0.1, y: 0.1, z: 0.1, w: 0), forKey: "inputMinComponents")
-                blurFilter?.setValue(CIVector(x: 0.6, y: 0.6, z: 0.6, w: 1), forKey: "inputMaxComponents")
+                blurFilter?.setValue(CIVector(x: 0.1, y: 0.1, z: 0.1, w: 0), forKey: FilterValueKey.inputMinComponents.rawValue)
+                blurFilter?.setValue(CIVector(x: 0.6, y: 0.6, z: 0.6, w: 1), forKey: FilterValueKey.inputMaxComponents.rawValue)
             case .hard:
-                blurFilter?.setValue(CIVector(x: 0.1, y: 0.1, z: 0.1, w: 0), forKey: "inputMinComponents")
-                blurFilter?.setValue(CIVector(x: 0.4, y: 0.4, z: 0.4, w: 1), forKey: "inputMaxComponents")
+                blurFilter?.setValue(CIVector(x: 0.1, y: 0.1, z: 0.1, w: 0), forKey: FilterValueKey.inputMinComponents.rawValue)
+                blurFilter?.setValue(CIVector(x: 0.4, y: 0.4, z: 0.4, w: 1), forKey: FilterValueKey.inputMaxComponents.rawValue)
             }
         case .colorControls:
             blurFilter?.setValue(ciImage, forKey: kCIInputImageKey)
