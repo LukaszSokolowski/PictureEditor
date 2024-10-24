@@ -23,6 +23,8 @@
 		219EEF7B2B1D559A00D35B84 /* PressAndRelease.swift in Sources */ = {isa = PBXBuildFile; fileRef = 219EEF7A2B1D559A00D35B84 /* PressAndRelease.swift */; };
 		219EEF7D2B1D594C00D35B84 /* Icons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 219EEF7C2B1D594C00D35B84 /* Icons.swift */; };
 		219EEF7F2B1E7E4900D35B84 /* UIColor+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 219EEF7E2B1E7E4900D35B84 /* UIColor+.swift */; };
+		21A10E1C2CCB0E750092D1F2 /* ImageMetadataKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21A10E1B2CCB0E6C0092D1F2 /* ImageMetadataKey.swift */; };
+		21A10E202CCB0EAE0092D1F2 /* ImageMetadata.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21A10E1F2CCB0EAE0092D1F2 /* ImageMetadata.swift */; };
 		21B50BF828F9FFF9001DB5B9 /* PictureEditorApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21B50BF728F9FFF9001DB5B9 /* PictureEditorApp.swift */; };
 		21B50BFA28F9FFF9001DB5B9 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21B50BF928F9FFF9001DB5B9 /* ContentView.swift */; };
 		21B50BFC28F9FFFA001DB5B9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 21B50BFB28F9FFFA001DB5B9 /* Assets.xcassets */; };
@@ -95,6 +97,8 @@
 		219EEF7A2B1D559A00D35B84 /* PressAndRelease.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PressAndRelease.swift; sourceTree = "<group>"; };
 		219EEF7C2B1D594C00D35B84 /* Icons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Icons.swift; sourceTree = "<group>"; };
 		219EEF7E2B1E7E4900D35B84 /* UIColor+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+.swift"; sourceTree = "<group>"; };
+		21A10E1B2CCB0E6C0092D1F2 /* ImageMetadataKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageMetadataKey.swift; sourceTree = "<group>"; };
+		21A10E1F2CCB0EAE0092D1F2 /* ImageMetadata.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageMetadata.swift; sourceTree = "<group>"; };
 		21B50BF428F9FFF9001DB5B9 /* PictureEditor.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PictureEditor.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		21B50BF728F9FFF9001DB5B9 /* PictureEditorApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PictureEditorApp.swift; sourceTree = "<group>"; };
 		21B50BF928F9FFF9001DB5B9 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -192,6 +196,7 @@
 		219267C42B100D200089D273 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				21A10E1A2CCB0DCD0092D1F2 /* ImageMetadata */,
 				215BDC7C28FAE26E00E460B4 /* ImageProcessing */,
 			);
 			path = Model;
@@ -214,6 +219,15 @@
 				219EEF7A2B1D559A00D35B84 /* PressAndRelease.swift */,
 			);
 			path = ViewModifiers;
+			sourceTree = "<group>";
+		};
+		21A10E1A2CCB0DCD0092D1F2 /* ImageMetadata */ = {
+			isa = PBXGroup;
+			children = (
+				21A10E1F2CCB0EAE0092D1F2 /* ImageMetadata.swift */,
+				21A10E1B2CCB0E6C0092D1F2 /* ImageMetadataKey.swift */,
+			);
+			path = ImageMetadata;
 			sourceTree = "<group>";
 		};
 		21B50BEB28F9FFF9001DB5B9 = {
@@ -576,6 +590,7 @@
 				214D02492B212127005A53A9 /* PopupView.swift in Sources */,
 				21C7D54B2B1CAA4C002FB63F /* PhotoPickerView.swift in Sources */,
 				219EEF7F2B1E7E4900D35B84 /* UIColor+.swift in Sources */,
+				21A10E1C2CCB0E750092D1F2 /* ImageMetadataKey.swift in Sources */,
 				219EEF7B2B1D559A00D35B84 /* PressAndRelease.swift in Sources */,
 				213851AC28FC790C0091BE94 /* WrappedImage.swift in Sources */,
 				21B50C0128F9FFFA001DB5B9 /* Persistence.swift in Sources */,
@@ -592,6 +607,7 @@
 				21CF59412B30A8CE00F8C0E9 /* PageViewController.swift in Sources */,
 				215BDC7B28FA138B00E460B4 /* ImageInfoView.swift in Sources */,
 				21B50BFA28F9FFF9001DB5B9 /* ContentView.swift in Sources */,
+				21A10E202CCB0EAE0092D1F2 /* ImageMetadata.swift in Sources */,
 				215BDC7928FA095800E460B4 /* MainView.swift in Sources */,
 				214C1C7F2B24CC8E00AA1FD3 /* BlurType.swift in Sources */,
 				21CF59442B31F67E00F8C0E9 /* PageView.swift in Sources */,

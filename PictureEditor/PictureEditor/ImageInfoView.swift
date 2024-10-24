@@ -8,28 +8,6 @@
 import SwiftUI
 import ImageIO
 
-enum ImageData: String {
-    case colorModel = "ColorModel"
-    case height = "PixelHeight"
-    case width = "PixelWidth"
-    case profileName = "ProfileName"
-    case apertureValue = "{Exif}.ApertureValue"
-    case bodyMake = "{TIFF}.Make"
-    case bodyModel = "{TIFF}.Model"
-    case bodySerialNumber = "{Exif}.BodySerialNumber"
-}
-
-struct ImageMetaData {
-    let colorModel: String?
-    let height: Int?
-    let width: Int?
-    let profileName: String?
-    let apertureValue: String?
-    let bodyMake: String?
-    let bodyModel: String?
-    let bodySerialNumber: String?
-}
-
 struct ImageInfoViewModel {
     private let imageDictionary: CFDictionary?
     
@@ -43,20 +21,17 @@ struct ImageInfoViewModel {
         self.imageDictionary = dictionary
     }
     
-    var imageMetaData: ImageMetaData? {
-        var imageData: ImageMetaData?
-        if let nsDict = imageDictionary as NSDictionary? {
-            print(nsDict)
-            imageData = .init(colorModel: nsDict[ImageData.colorModel.rawValue] as? String,
-                              height: nsDict[ImageData.height.rawValue] as? Int,
-                              width: nsDict[ImageData.width.rawValue] as? Int,
-                              profileName: nsDict[ImageData.profileName.rawValue] as? String,
-                              apertureValue: nsDict.value(forKeyPath: ImageData.apertureValue.rawValue) as? String,
-                              bodyMake: nsDict.value(forKeyPath: ImageData.bodyMake.rawValue) as? String,
-                              bodyModel: nsDict.value(forKeyPath: ImageData.bodyModel.rawValue) as? String,
-                              bodySerialNumber: nsDict.value(forKeyPath: ImageData.bodySerialNumber.rawValue) as? String)
-        }
-        return imageData
+    var imageMetadata: ImageMetadata? {
+        guard let nsDict = imageDictionary as NSDictionary? else { return nil }
+        
+        return .init(colorModel: nsDict[ImageMetadataKey.colorModel.rawValue] as? String,
+                     height: nsDict[ImageMetadataKey.height.rawValue] as? Int,
+                     width: nsDict[ImageMetadataKey.width.rawValue] as? Int,
+                     profileName: nsDict[ImageMetadataKey.profileName.rawValue] as? String,
+                     apertureValue: nsDict.value(forKeyPath: ImageMetadataKey.apertureValue.rawValue) as? String,
+                     bodyMake: nsDict.value(forKeyPath: ImageMetadataKey.bodyMake.rawValue) as? String,
+                     bodyModel: nsDict.value(forKeyPath: ImageMetadataKey.bodyModel.rawValue) as? String,
+                     bodySerialNumber: nsDict.value(forKeyPath: ImageMetadataKey.bodySerialNumber.rawValue) as? String)
     }
 }
 
@@ -68,35 +43,35 @@ struct ImageInfoView: View {
     }
     
     var imageWidth: String {
-        "\(model.imageMetaData?.width ?? .zero)"
+        "\(model.imageMetadata?.width ?? .zero)"
     }
     
     var imageHeight: String {
-        "\(model.imageMetaData?.height ?? .zero)"
+        "\(model.imageMetadata?.height ?? .zero)"
     }
     
     var colorSpace: String? {
-        model.imageMetaData?.colorModel
+        model.imageMetadata?.colorModel
     }
     
     var profileName: String? {
-        model.imageMetaData?.profileName
+        model.imageMetadata?.profileName
     }
     
     var apertureValue: String? {
-        model.imageMetaData?.apertureValue
+        model.imageMetadata?.apertureValue
     }
     
     var bodySerialNumber: String? {
-        model.imageMetaData?.bodySerialNumber
+        model.imageMetadata?.bodySerialNumber
     }
     
     var bodyMake: String? {
-        model.imageMetaData?.bodyMake
+        model.imageMetadata?.bodyMake
     }
     
     var bodyModel: String? {
-        model.imageMetaData?.bodyModel
+        model.imageMetadata?.bodyModel
     }
     
     var body: some View {
