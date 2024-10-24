@@ -22,7 +22,7 @@ struct MainView: View {
     @State private var pressesTheImage: Bool = false
     @State private var isRevertModalActive: Bool = false
     @State private var isExportModalActive: Bool = false
-    @State private var isBlurSelectionAvtive: Bool = false
+    @State private var isBlurSelectionActive: Bool = false
     @State private var activeFilter: FilterType? = nil
     
     var bottomContainerImage: UIImage {
@@ -162,7 +162,7 @@ struct MainView: View {
                     Spacer()
                     VStack {
                         mainActionsView
-                        if isBlurSelectionAvtive {
+                        if isBlurSelectionActive {
                             GeometryReader { geometryReader in
                                 VStack(spacing: Padding.small.rawValue) {
                                     Text("Select blur")
@@ -197,19 +197,19 @@ struct MainView: View {
                         }
                         
                         Button("Blur options") {
-                            isBlurSelectionAvtive.toggle()
+                            isBlurSelectionActive.toggle()
                         }
                         .buttonStyle(GradientButton())
                         Button("Export image") {
                             isExportModalActive = true
                         }.buttonStyle(GradientButton())
                         
-                        NavigationLink("Present image information", value: originalImage)
+                        NavigationLink("Present image information", value: imageData)
                             .buttonStyle(.bordered)
                             .foregroundColor(.black)
                             .padding(EdgeInsets(top: Padding.normal.rawValue, leading: .zero, bottom: .zero, trailing: .zero))
-                    }.navigationDestination(for: UIImage.self) { originalImage in
-                        ImageInfoView(processedImage: originalImage)
+                    }.navigationDestination(for: Data.self) { imageData in
+                        ImageInfoView(model: .init(imageData: imageData))
                     }
                 }
                 if isRevertModalActive {
