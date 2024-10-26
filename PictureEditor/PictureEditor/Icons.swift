@@ -11,4 +11,5 @@ struct Icons {
     static let plusCircle = "plus.circle"
     static let handTap = "hand.tap"
     static let revert = "exclamationmark.arrow.circlepath"
+    static let imageInfo = "info.circle"
 }

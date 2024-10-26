@@ -130,12 +130,24 @@ struct MainView: View {
                             }.padding(Padding.normal.rawValue)
                         }
                         Spacer()
+                        if imageData != nil {
+                            NavigationLink(value: imageData) {
+                                Image(systemName: Icons.imageInfo)
+                                    .symbolRenderingMode(.monochrome)
+                                    .font(.system(size: UIConstants.iconSize))
+                                    .foregroundColor(.black)
+                            }
+                            .navigationDestination(for: Data.self) { imageData in
+                                ImageInfoView(model: .init(imageData: imageData))
+                            }
+                        }
                         PhotoPickerView(selection: $imageSelection)
                             .onChange(of: imageSelection) { selectedItem in
                                 if let selectedItem {
                                     handleTransferableDataFor(selectedItem)
                                 }
                             }.padding(Padding.normal.rawValue)
+                      
                     }
                     VStack {
                         if #available(iOS 17.0, *) {
@@ -203,13 +215,14 @@ struct MainView: View {
                         Button("Export image") {
                             isExportModalActive = true
                         }.buttonStyle(GradientButton())
-                        
-                        NavigationLink("Present image information", value: imageData)
-                            .buttonStyle(.bordered)
-                            .foregroundColor(.black)
-                            .padding(EdgeInsets(top: Padding.normal.rawValue, leading: .zero, bottom: .zero, trailing: .zero))
-                    }.navigationDestination(for: Data.self) { imageData in
-                        ImageInfoView(model: .init(imageData: imageData))
+                      
+//                        NavigationLink("Present image information", value: imageData)
+//                            .buttonStyle(.bordered)
+//                            .foregroundColor(.black)
+//                            .padding(EdgeInsets(top: Padding.normal.rawValue, leading: .zero, bottom: .zero, trailing: .zero))
+//                            .navigationDestination(for: Data.self) { imageData in
+//                                ImageInfoView(model: .init(imageData: imageData))
+//                            }
                     }
                 }
                 if isRevertModalActive {
