@@ -202,7 +202,7 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
-		219267C52B100D620089D273 /* Helpers */ = {
+		219267C52B100D620089D273 /* UIHelpers */ = {
 			isa = PBXGroup;
 			children = (
 				219267C62B100D740089D273 /* Padding.swift */,
@@ -210,7 +210,7 @@
 				219EEF7C2B1D594C00D35B84 /* Icons.swift */,
 				219EEF7E2B1E7E4900D35B84 /* UIColor+.swift */,
 			);
-			name = Helpers;
+			name = UIHelpers;
 			sourceTree = "<group>";
 		};
 		219EEF792B1D556E00D35B84 /* ViewModifiers */ = {
@@ -228,6 +228,26 @@
 				21A10E1B2CCB0E6C0092D1F2 /* ImageMetadataKey.swift */,
 			);
 			path = ImageMetadata;
+			sourceTree = "<group>";
+		};
+		21A10E212CCB0FA70092D1F2 /* PageComponent */ = {
+			isa = PBXGroup;
+			children = (
+				21CF59422B31F67300F8C0E9 /* PageView */,
+			);
+			path = PageComponent;
+			sourceTree = "<group>";
+		};
+		21A10E222CCB0FCB0092D1F2 /* CustomViews */ = {
+			isa = PBXGroup;
+			children = (
+				21F1A2272B1D356800895878 /* Tips */,
+				21CE5CE72B1FD6B700C11DDC /* BackgroundGradient */,
+				21CE5CEA2B1FF42A00C11DDC /* GradientButtonStyle */,
+				214D02452B2120B2005A53A9 /* BlurEffect */,
+				214D024A2B212201005A53A9 /* PopupView */,
+			);
+			path = CustomViews;
 			sourceTree = "<group>";
 		};
 		21B50BEB28F9FFF9001DB5B9 = {
@@ -255,16 +275,11 @@
 		21B50BF628F9FFF9001DB5B9 /* PictureEditor */ = {
 			isa = PBXGroup;
 			children = (
-				21CF59422B31F67300F8C0E9 /* PageView */,
-				21CF593F2B30A8BE00F8C0E9 /* PageViewController */,
-				214D024A2B212201005A53A9 /* PopupView */,
-				214D02452B2120B2005A53A9 /* BlurEffect */,
-				21CE5CEA2B1FF42A00C11DDC /* GradientButtonStyle */,
-				21CE5CE72B1FD6B700C11DDC /* BackgroundGradient */,
+				21A10E222CCB0FCB0092D1F2 /* CustomViews */,
+				21A10E212CCB0FA70092D1F2 /* PageComponent */,
 				219EEF792B1D556E00D35B84 /* ViewModifiers */,
-				21F1A2272B1D356800895878 /* Tips */,
 				21C7D5492B1CA5A9002FB63F /* PhotoPickerView */,
-				219267C52B100D620089D273 /* Helpers */,
+				219267C52B100D620089D273 /* UIHelpers */,
 				219267C42B100D200089D273 /* Model */,
 				21B50BF728F9FFF9001DB5B9 /* PictureEditorApp.swift */,
 				215BDC7828FA095800E460B4 /* MainView.swift */,
@@ -338,6 +353,7 @@
 		21CF59422B31F67300F8C0E9 /* PageView */ = {
 			isa = PBXGroup;
 			children = (
+				21CF593F2B30A8BE00F8C0E9 /* PageViewController */,
 				21E67AE02B34A52000E14680 /* PageOption */,
 				21CF59432B31F67E00F8C0E9 /* PageView.swift */,
 			);
