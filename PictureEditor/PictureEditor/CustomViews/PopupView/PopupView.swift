@@ -32,13 +32,6 @@ struct PopupView: View {
         self.cancelAction = cancelAction
     }
     
-    var gradient: some View {
-        LinearGradient(colors: [.white, .init(uiColor: .lightBlue)],
-                       startPoint: .topLeading,
-                       endPoint: .bottomTrailing)
-        .ignoresSafeArea()
-    }
-    
     var body: some View {
         ZStack{
             VStack {}.frame(maxWidth: .infinity, maxHeight: .infinity).background(.black).opacity(0.5)
@@ -54,19 +47,19 @@ struct PopupView: View {
                     }
                     VStack(spacing: Padding.small.rawValue) {
                         if let confirmButtonTitle, let confirmAction {
-                            Button(confirmButtonTitle) {
+                            PillButton(title: confirmButtonTitle) {
                                 confirmAction()
-                            }.buttonStyle(GradientButton())
+                            }
                         }
                         if let cancelButtonTitle, let cancelAction {
-                            Button(cancelButtonTitle) {
+                            PillButton(title: cancelButtonTitle) {
                                 cancelAction()
-                            }.buttonStyle(GradientButton())
+                            }
                         }
                     }
                 }
                 .padding(Padding.big.rawValue)
-                .background(gradient)
+                .background(Color(uiColor: .background))
                 .clipShape(RoundedRectangle(cornerRadius: clipShapeRadius, style: .continuous))
                 .shadow(radius: shadowRadius)
             }

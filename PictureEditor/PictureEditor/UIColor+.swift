@@ -8,7 +8,17 @@
 import UIKit
 
 extension UIColor {
-    static let lightBlue = UIColor(red: 180/255, green: 208/255, blue: 242/255, alpha: 1)
-    static let superLightBlue = UIColor(red: 240/255, green: 249/255, blue: 255/255, alpha: 1)
-    static let softBlue = UIColor(red: 159/255, green: 195/255, blue: 240/255, alpha: 1)
+    static let background = UIColor(
+        red: 242.0/255.0,
+        green: 180.0/255.0,
+        blue: 65.0/255.0,
+        alpha: 1.0
+    )
+    static let buttonBackground = UIColor(
+        red: 79.0/255.0,
+        green: 111.0/255.0,
+        blue: 140.0/255.0,
+        alpha: 1.0
+    )
+    static let softBlue = UIColor.yellow
 }

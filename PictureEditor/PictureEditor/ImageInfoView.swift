@@ -76,7 +76,6 @@ struct ImageInfoView: View {
     
     var body: some View {
         ZStack {
-            BackgroundGradient()
             VStack {
                 Text("Width: " + imageWidth + "px")
                 Text("Height: " + imageHeight + "px")

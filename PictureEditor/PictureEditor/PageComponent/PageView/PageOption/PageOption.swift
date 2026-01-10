@@ -17,26 +17,21 @@ struct PageOption: View {
     
     var body: some View {
         VStack {
-            Button("Equalize histogram") {
+            PillButton(title: "Equalize histogram") {
                 processedImage = processImageWith(processMethod: .equalizeHistogram)
             }
-            .buttonStyle(GradientButton())
-            Button("Horizontal reflect") {
+            PillButton(title: "Horizontal reflect") {
                 processedImage = processImageWith(processMethod: .horizontalReflection)
             }
-            .buttonStyle(GradientButton())
-            Button("Vertical reflect") {
+            PillButton(title: "Vertical reflect") {
                 processedImage = processImageWith(processMethod: .verticalReflection)
             }
-            .buttonStyle(GradientButton())
-            Button("Rotate left") {
+            PillButton(title: "Rotate left") {
                 processedImage = processImageWith(processMethod: .rotateLeft)
             }
-            .buttonStyle(GradientButton())
-            Button("Rotate right") {
+            PillButton(title: "Rotate right") {
                 processedImage = processImageWith(processMethod: .rotateRight)
             }
-            .buttonStyle(GradientButton())
         }
     }
     

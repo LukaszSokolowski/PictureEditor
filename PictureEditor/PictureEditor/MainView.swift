@@ -63,50 +63,46 @@ struct MainView: View {
     
     var filterStrengthView: some View {
         HStack {
-            Button("Soft") {
+            PillButton(title: "Soft") {
                 let imageFilters = ImageFilters(image: originalImage)
                 processedImage = imageFilters.applyFilter(filterType: activeFilter!, filterStrength: .soft)
-            }.buttonStyle(GradientButton())
-            Button("Medium") {
+            }
+            PillButton(title: "Medium") {
                 let imageFilters = ImageFilters(image: originalImage)
                 processedImage = imageFilters.applyFilter(filterType: activeFilter!, filterStrength: .medium)
-            }.buttonStyle(GradientButton())
-            Button("Hard") {
+            }
+            PillButton(title: "Hard") {
                 let imageFilters = ImageFilters(image: originalImage)
                 processedImage = imageFilters.applyFilter(filterType: activeFilter!, filterStrength: .hard)
-            }.buttonStyle(GradientButton())
+            }
         }
     }
     
     var mainActionsView: some View {
         VStack {
-            Button("Equalize histogram") {
+            PillButton(title: "Equalize histogram") {
                 processedImage = processImageWith(processMethod: .equalizeHistogram)
             }
-            .buttonStyle(GradientButton())
-            Button("Horizontal reflect") {
+            PillButton(title: "Horizontal reflect") {
                 processedImage = processImageWith(processMethod: .horizontalReflection)
             }
-            .buttonStyle(GradientButton())
-            Button("Vertical reflect") {
+            PillButton(title: "Vertical reflect") {
                 processedImage = processImageWith(processMethod: .verticalReflection)
             }
-            .buttonStyle(GradientButton())
-            Button("Rotate left") {
+            PillButton(title: "Rotate left") {
                 processedImage = processImageWith(processMethod: .rotateLeft)
             }
-            .buttonStyle(GradientButton())
-            Button("Rotate right") {
+            PillButton(title: "Rotate right") {
                 processedImage = processImageWith(processMethod: .rotateRight)
             }
-            .buttonStyle(GradientButton())
         }
     }
     
+    let backgroundGradient = LinearGradient(
+        colors: [Color.red, Color.blue],
+        startPoint: .top, endPoint: .bottom)
+    
     var body: some View {
-        NavigationStack {
-            ZStack {
-                BackgroundGradient()
                 VStack {
                     HStack {
                         if processedImage != nil {
@@ -171,10 +167,9 @@ struct MainView: View {
                                     ScrollView(.horizontal) {
                                         HStack(spacing: Padding.small.rawValue) {
                                             ForEach(BlurType.allCases, id: \.self) { blur in
-                                                Button(blur.name) {
+                                                PillButton(title: blur.name) {
                                                     processedImage = Blur(image: processedImage ?? originalImage).applyBlurFilter(val: 32, filterType: blur)
                                                 }
-                                                .buttonStyle(GradientButton())
                                             }
                                         }
                                     }
@@ -188,33 +183,32 @@ struct MainView: View {
                                 filterStrengthView
                             }
                             ForEach(FilterType.allCases, id: \.self) { filter in
-                                Button(filter.name) {
+                                PillButton(title: filter.name) {
                                     if activeFilter == nil {
                                         activeFilter = filter
                                     } else {
                                         activeFilter = nil
                                     }
-                                }.buttonStyle(GradientButton())
+                                }
                             }
                         }
                         
-                        Button("Blur options") {
+                        PillButton(title: "Blur options") {
                             isBlurSelectionActive.toggle()
                         }
-                        .buttonStyle(GradientButton())
-                        Button("Export image") {
+                        PillButton(title: "Export image") {
                             isExportModalActive = true
-                        }.buttonStyle(GradientButton())
+                        }
                     }
                 }
+                .background(Color(uiColor: .background))
+
                 if isRevertModalActive {
                     revertChangesView
                 }
                 if isExportModalActive {
                     exportImageModalView
                 }
-            }
-        }
     }
 }
 
