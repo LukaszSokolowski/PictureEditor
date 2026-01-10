@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum ImageProcessMethod {
+enum ImageProcessMethod: CaseIterable {
     case equalizeHistogram
     case horizontalReflection
     case verticalReflection

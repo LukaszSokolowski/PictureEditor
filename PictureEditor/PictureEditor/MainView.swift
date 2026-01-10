@@ -32,32 +32,22 @@ struct MainView: View {
     var originalImageTip = OriginalImageTip()
     
     var revertChangesView: some View {
-        PopupView(title: "Revert to original?",
-                  content: "You cannot undo this action",
-                  confirmButtonTitle: "Revert",
-                  cancelButtonTitle: "Cancel",
-                  confirmAction: {
+        PopupView.revertChanges {
             isRevertModalActive = false
             processedImage = nil
-        },
-                  cancelAction: {
+        } onCancel: {
             isRevertModalActive = false
-        })
+        }
     }
     
     var exportImageModalView: some View {
-        PopupView(title: "Export Image?",
-                  content: nil,
-                  confirmButtonTitle: "OK",
-                  cancelButtonTitle: "Cancel",
-                  confirmAction: {
+        PopupView.exportImage {
             isExportModalActive = false
             let imageSaver = ImageSaver()
             imageSaver.writeToPhotoAlbum(image: processedImage ?? originalImage)
-        },
-                  cancelAction: {
+        } onCancel: {
             isExportModalActive = false
-        })
+        }
     }
     
     @available(iOS 17.0, *)
@@ -215,14 +205,6 @@ struct MainView: View {
                         Button("Export image") {
                             isExportModalActive = true
                         }.buttonStyle(GradientButton())
-                      
-//                        NavigationLink("Present image information", value: imageData)
-//                            .buttonStyle(.bordered)
-//                            .foregroundColor(.black)
-//                            .padding(EdgeInsets(top: Padding.normal.rawValue, leading: .zero, bottom: .zero, trailing: .zero))
-//                            .navigationDestination(for: Data.self) { imageData in
-//                                ImageInfoView(model: .init(imageData: imageData))
-//                            }
                     }
                 }
                 if isRevertModalActive {
