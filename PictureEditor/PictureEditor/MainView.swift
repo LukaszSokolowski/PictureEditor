@@ -22,8 +22,6 @@ struct MainView: View {
     @State private var pressesTheImage: Bool = false
     @State private var isRevertModalActive: Bool = false
     @State private var isExportModalActive: Bool = false
-    @State private var isBlurSelectionActive: Bool = false
-    @State private var activeFilter: FilterType? = nil
     
     var bottomContainerImage: UIImage {
         pressesTheImage ? originalImage : processedImage ?? originalImage
@@ -61,23 +59,6 @@ struct MainView: View {
         .padding(.horizontal, Padding.small.rawValue)
     }
     
-    var filterStrengthView: some View {
-        HStack {
-            PillButton(title: "Soft") {
-                let imageFilters = ImageFilters(image: originalImage)
-                processedImage = imageFilters.applyFilter(filterType: activeFilter!, filterStrength: .soft)
-            }
-            PillButton(title: "Medium") {
-                let imageFilters = ImageFilters(image: originalImage)
-                processedImage = imageFilters.applyFilter(filterType: activeFilter!, filterStrength: .medium)
-            }
-            PillButton(title: "Hard") {
-                let imageFilters = ImageFilters(image: originalImage)
-                processedImage = imageFilters.applyFilter(filterType: activeFilter!, filterStrength: .hard)
-            }
-        }
-    }
-    
     var mainActionsView: some View {
         VStack {
             PillButton(title: "Equalize histogram") {
@@ -103,112 +84,78 @@ struct MainView: View {
         startPoint: .top, endPoint: .bottom)
     
     var body: some View {
-                VStack {
-                    HStack {
-                        if processedImage != nil {
-                            Button {
-                                isRevertModalActive = true
-                            } label: {
-                                Image(systemName: Icons.revert)
-                                    .symbolRenderingMode(.monochrome)
-                                    .font(.system(size: UIConstants.iconSize))
-                                    .foregroundColor(.black)
-                            }.padding(Padding.normal.rawValue)
-                        }
-                        Spacer()
-                        if imageData != nil {
-                            NavigationLink(value: imageData) {
-                                Image(systemName: Icons.imageInfo)
-                                    .symbolRenderingMode(.monochrome)
-                                    .font(.system(size: UIConstants.iconSize))
-                                    .foregroundColor(.black)
-                            }
-                            .navigationDestination(for: Data.self) { imageData in
-                                ImageInfoView(model: .init(imageData: imageData))
-                            }
-                        }
-                        PhotoPickerView(selection: $imageSelection)
-                            .onChange(of: imageSelection) { selectedItem in
-                                if let selectedItem {
-                                    handleTransferableDataFor(selectedItem)
-                                }
-                            }.padding(Padding.normal.rawValue)
-                      
-                    }
-                    VStack {
-                        if #available(iOS 17.0, *) {
-                            tipView
-                        }
-                        Image(uiImage: bottomContainerImage)
-                            .resizable()
-                            .aspectRatio(contentMode: .fit)
-                            .clipShape(.rect(cornerRadius: 4))
-                            .padding(Padding.small.rawValue)
-                            .pressAndReleaseAction(pressing: $pressesTheImage,
-                                                   onRelease: {
-                                tipActionPerformed()
-                            })
-                    }.task {
-                        if #available(iOS 17.0, *) {
-                            try? Tips.resetDatastore() //Only for testing
-                            try? Tips.configure([
-                                .displayFrequency(.immediate),
-                                .datastoreLocation(.applicationDefault)
-                            ])
-                        }
+        ZStack {
+            VStack {
+                HStack {
+                    if processedImage != nil {
+                        Button {
+                            isRevertModalActive = true
+                        } label: {
+                            Image(systemName: Icons.revert)
+                                .symbolRenderingMode(.monochrome)
+                                .font(.system(size: UIConstants.iconSize))
+                                .foregroundColor(.black)
+                        }.padding(Padding.normal.rawValue)
                     }
                     Spacer()
-                    VStack {
-                        mainActionsView
-                        if isBlurSelectionActive {
-                            GeometryReader { geometryReader in
-                                VStack(spacing: Padding.small.rawValue) {
-                                    Text("Select blur")
-                                    ScrollView(.horizontal) {
-                                        HStack(spacing: Padding.small.rawValue) {
-                                            ForEach(BlurType.allCases, id: \.self) { blur in
-                                                PillButton(title: blur.name) {
-                                                    processedImage = Blur(image: processedImage ?? originalImage).applyBlurFilter(val: 32, filterType: blur)
-                                                }
-                                            }
-                                        }
-                                    }
-                                    .scrollIndicators(.hidden)
-                                }.frame(width: geometryReader.size.width)
-                            }.frame(height: 64.0)
+                    if imageData != nil {
+                        NavigationLink(value: imageData) {
+                            Image(systemName: Icons.imageInfo)
+                                .symbolRenderingMode(.monochrome)
+                                .font(.system(size: UIConstants.iconSize))
+                                .foregroundColor(.black)
                         }
-                        
-                        VStack {
-                            if activeFilter != nil {
-                                filterStrengthView
-                            }
-                            ForEach(FilterType.allCases, id: \.self) { filter in
-                                PillButton(title: filter.name) {
-                                    if activeFilter == nil {
-                                        activeFilter = filter
-                                    } else {
-                                        activeFilter = nil
-                                    }
-                                }
-                            }
-                        }
-                        
-                        PillButton(title: "Blur options") {
-                            isBlurSelectionActive.toggle()
-                        }
-                        PillButton(title: "Export image") {
-                            isExportModalActive = true
+                        .navigationDestination(for: Data.self) { imageData in
+                            ImageInfoView(model: .init(imageData: imageData))
                         }
                     }
+                    PhotoPickerView(selection: $imageSelection)
+                        .onChange(of: imageSelection) { selectedItem in
+                            if let selectedItem {
+                                handleTransferableDataFor(selectedItem)
+                            }
+                        }.padding(Padding.normal.rawValue)
+                    
                 }
-                .background(Color(uiColor: .background))
-
-                if isRevertModalActive {
-                    revertChangesView
+                VStack {
+                    if #available(iOS 17.0, *) {
+                        tipView
+                    }
+                    Image(uiImage: bottomContainerImage)
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .clipShape(.rect(cornerRadius: 4))
+                        .padding(Padding.small.rawValue)
+                        .pressAndReleaseAction(pressing: $pressesTheImage,
+                                               onRelease: {
+                            tipActionPerformed()
+                        })
+                }.task {
+                    if #available(iOS 17.0, *) {
+                        try? Tips.resetDatastore() //Only for testing
+                        try? Tips.configure([
+                            .displayFrequency(.immediate),
+                            .datastoreLocation(.applicationDefault)
+                        ])
+                    }
                 }
-                if isExportModalActive {
-                    exportImageModalView
+                Spacer()
+                VStack {
+                    mainActionsView
+                    PillButton(title: "Export image") {
+                        isExportModalActive = true
+                    }
                 }
+            }
+            .background(Color(uiColor: .background))
+            
+            if isRevertModalActive {
+                revertChangesView
+            }
+            if isExportModalActive {
+                exportImageModalView
+            }
+        }
     }
 }
 

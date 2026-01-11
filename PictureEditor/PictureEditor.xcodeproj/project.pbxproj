@@ -10,7 +10,6 @@
 		213851AA28FC78F90091BE94 /* HistogramLevels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 213851A928FC78F90091BE94 /* HistogramLevels.swift */; };
 		213851AC28FC790C0091BE94 /* WrappedImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 213851AB28FC790C0091BE94 /* WrappedImage.swift */; };
 		213851AE28FC79220091BE94 /* ImageProcessMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 213851AD28FC79220091BE94 /* ImageProcessMethod.swift */; };
-		214C1C7F2B24CC8E00AA1FD3 /* BlurType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 214C1C7E2B24CC8E00AA1FD3 /* BlurType.swift */; };
 		214D02472B2120D7005A53A9 /* BlurEffect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 214D02462B2120D7005A53A9 /* BlurEffect.swift */; };
 		214D02492B212127005A53A9 /* PopupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 214D02482B212127005A53A9 /* PopupView.swift */; };
 		215BDC7928FA095800E460B4 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 215BDC7828FA095800E460B4 /* MainView.swift */; };
@@ -20,7 +19,6 @@
 		218DDE942F12B2A3001D9141 /* PopupView+Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = 218DDE932F12B298001D9141 /* PopupView+Common.swift */; };
 		219267C72B100D740089D273 /* Padding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 219267C62B100D740089D273 /* Padding.swift */; };
 		219267C92B100D9C0089D273 /* UIConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 219267C82B100D9C0089D273 /* UIConstants.swift */; };
-		2196B3022B2A57A900089E0E /* FilterType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2196B3012B2A57A900089E0E /* FilterType.swift */; };
 		219EEF7B2B1D559A00D35B84 /* PressAndRelease.swift in Sources */ = {isa = PBXBuildFile; fileRef = 219EEF7A2B1D559A00D35B84 /* PressAndRelease.swift */; };
 		219EEF7D2B1D594C00D35B84 /* Icons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 219EEF7C2B1D594C00D35B84 /* Icons.swift */; };
 		219EEF7F2B1E7E4900D35B84 /* UIColor+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 219EEF7E2B1E7E4900D35B84 /* UIColor+.swift */; };
@@ -36,7 +34,7 @@
 		21B50C1828F9FFFA001DB5B9 /* PictureEditorUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21B50C1728F9FFFA001DB5B9 /* PictureEditorUITests.swift */; };
 		21B50C1A28F9FFFA001DB5B9 /* PictureEditorUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21B50C1928F9FFFA001DB5B9 /* PictureEditorUITestsLaunchTests.swift */; };
 		21C7D54B2B1CAA4C002FB63F /* PhotoPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21C7D54A2B1CAA4C002FB63F /* PhotoPickerView.swift */; };
-		21CE5CEC2B1FF43C00C11DDC /* GradientButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21CE5CEB2B1FF43C00C11DDC /* GradientButton.swift */; };
+		21CE5CEC2B1FF43C00C11DDC /* PillButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21CE5CEB2B1FF43C00C11DDC /* PillButton.swift */; };
 		21CF59412B30A8CE00F8C0E9 /* PageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21CF59402B30A8CE00F8C0E9 /* PageViewController.swift */; };
 		21CF59442B31F67E00F8C0E9 /* PageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21CF59432B31F67E00F8C0E9 /* PageView.swift */; };
 		21E67AE22B34A53500E14680 /* PageOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21E67AE12B34A53500E14680 /* PageOption.swift */; };
@@ -83,7 +81,6 @@
 		213851A928FC78F90091BE94 /* HistogramLevels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistogramLevels.swift; sourceTree = "<group>"; };
 		213851AB28FC790C0091BE94 /* WrappedImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WrappedImage.swift; sourceTree = "<group>"; };
 		213851AD28FC79220091BE94 /* ImageProcessMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageProcessMethod.swift; sourceTree = "<group>"; };
-		214C1C7E2B24CC8E00AA1FD3 /* BlurType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlurType.swift; sourceTree = "<group>"; };
 		214D02462B2120D7005A53A9 /* BlurEffect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlurEffect.swift; sourceTree = "<group>"; };
 		214D02482B212127005A53A9 /* PopupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopupView.swift; sourceTree = "<group>"; };
 		215BDC7828FA095800E460B4 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
@@ -93,7 +90,6 @@
 		218DDE932F12B298001D9141 /* PopupView+Common.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PopupView+Common.swift"; sourceTree = "<group>"; };
 		219267C62B100D740089D273 /* Padding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Padding.swift; sourceTree = "<group>"; };
 		219267C82B100D9C0089D273 /* UIConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIConstants.swift; sourceTree = "<group>"; };
-		2196B3012B2A57A900089E0E /* FilterType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterType.swift; sourceTree = "<group>"; };
 		2196B3032B2A72ED00089E0E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		219EEF7A2B1D559A00D35B84 /* PressAndRelease.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PressAndRelease.swift; sourceTree = "<group>"; };
 		219EEF7C2B1D594C00D35B84 /* Icons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Icons.swift; sourceTree = "<group>"; };
@@ -113,7 +109,7 @@
 		21B50C1728F9FFFA001DB5B9 /* PictureEditorUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PictureEditorUITests.swift; sourceTree = "<group>"; };
 		21B50C1928F9FFFA001DB5B9 /* PictureEditorUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PictureEditorUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		21C7D54A2B1CAA4C002FB63F /* PhotoPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoPickerView.swift; sourceTree = "<group>"; };
-		21CE5CEB2B1FF43C00C11DDC /* GradientButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientButton.swift; sourceTree = "<group>"; };
+		21CE5CEB2B1FF43C00C11DDC /* PillButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PillButton.swift; sourceTree = "<group>"; };
 		21CF59402B30A8CE00F8C0E9 /* PageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageViewController.swift; sourceTree = "<group>"; };
 		21CF59432B31F67E00F8C0E9 /* PageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageView.swift; sourceTree = "<group>"; };
 		21E67AE12B34A53500E14680 /* PageOption.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageOption.swift; sourceTree = "<group>"; };
@@ -187,8 +183,6 @@
 				213851A928FC78F90091BE94 /* HistogramLevels.swift */,
 				213851AB28FC790C0091BE94 /* WrappedImage.swift */,
 				213851AD28FC79220091BE94 /* ImageProcessMethod.swift */,
-				214C1C7E2B24CC8E00AA1FD3 /* BlurType.swift */,
-				2196B3012B2A57A900089E0E /* FilterType.swift */,
 			);
 			path = ImageProcessing;
 			sourceTree = "<group>";
@@ -250,7 +244,7 @@
 			isa = PBXGroup;
 			children = (
 				21F1A2272B1D356800895878 /* Tips */,
-				21CE5CEA2B1FF42A00C11DDC /* GradientButtonStyle */,
+				21CE5CEA2B1FF42A00C11DDC /* PillButton */,
 				214D02452B2120B2005A53A9 /* BlurEffect */,
 				214D024A2B212201005A53A9 /* PopupView */,
 			);
@@ -334,12 +328,12 @@
 			path = PhotoPickerView;
 			sourceTree = "<group>";
 		};
-		21CE5CEA2B1FF42A00C11DDC /* GradientButtonStyle */ = {
+		21CE5CEA2B1FF42A00C11DDC /* PillButton */ = {
 			isa = PBXGroup;
 			children = (
-				21CE5CEB2B1FF43C00C11DDC /* GradientButton.swift */,
+				21CE5CEB2B1FF43C00C11DDC /* PillButton.swift */,
 			);
-			path = GradientButtonStyle;
+			path = PillButton;
 			sourceTree = "<group>";
 		};
 		21CF593F2B30A8BE00F8C0E9 /* PageViewController */ = {
@@ -619,18 +613,16 @@
 				218DDE942F12B2A3001D9141 /* PopupView+Common.swift in Sources */,
 				21B50C0428F9FFFA001DB5B9 /* PictureEditor.xcdatamodeld in Sources */,
 				21E67AE22B34A53500E14680 /* PageOption.swift in Sources */,
-				2196B3022B2A57A900089E0E /* FilterType.swift in Sources */,
 				21CF59412B30A8CE00F8C0E9 /* PageViewController.swift in Sources */,
 				215BDC7B28FA138B00E460B4 /* ImageInfoView.swift in Sources */,
 				21B50BFA28F9FFF9001DB5B9 /* ContentView.swift in Sources */,
 				21A10E202CCB0EAE0092D1F2 /* ImageMetadata.swift in Sources */,
 				215BDC7928FA095800E460B4 /* MainView.swift in Sources */,
-				214C1C7F2B24CC8E00AA1FD3 /* BlurType.swift in Sources */,
 				21CF59442B31F67E00F8C0E9 /* PageView.swift in Sources */,
 				215BDC7E28FAE2A100E460B4 /* VImageWrapper.swift in Sources */,
 				21B50BF828F9FFF9001DB5B9 /* PictureEditorApp.swift in Sources */,
 				21F1A2262B1D345200895878 /* Tips.swift in Sources */,
-				21CE5CEC2B1FF43C00C11DDC /* GradientButton.swift in Sources */,
+				21CE5CEC2B1FF43C00C11DDC /* PillButton.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
