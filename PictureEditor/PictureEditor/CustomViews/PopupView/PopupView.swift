@@ -33,12 +33,12 @@ struct PopupView: View {
     }
     
     var body: some View {
-        ZStack{
+        ZStack {
             VStack {}.frame(maxWidth: .infinity, maxHeight: .infinity).background(.black).opacity(0.5)
             VStack {
-                VStack(spacing: Padding.normal.rawValue) {
+                VStack(spacing: Padding.big.rawValue) {
                     Text(title)
-                        .fontWeight(.bold)
+                        .fontWeight(.semibold)
                         .font(.title)
                     if let content {
                         Text(content)
@@ -47,12 +47,18 @@ struct PopupView: View {
                     }
                     VStack(spacing: Padding.small.rawValue) {
                         if let confirmButtonTitle, let confirmAction {
-                            PillButton(title: confirmButtonTitle) {
+                            PillButton(
+                                title: confirmButtonTitle,
+                                isWide: true
+                            ) {
                                 confirmAction()
                             }
                         }
                         if let cancelButtonTitle, let cancelAction {
-                            PillButton(title: cancelButtonTitle) {
+                            PillButton(
+                                title: cancelButtonTitle,
+                                isWide: true
+                            ) {
                                 cancelAction()
                             }
                         }
@@ -60,9 +66,13 @@ struct PopupView: View {
                 }
                 .padding(Padding.big.rawValue)
                 .background(Color(uiColor: .background))
-                .clipShape(RoundedRectangle(cornerRadius: clipShapeRadius, style: .continuous))
+                .clipShape(
+                    RoundedRectangle(
+                        cornerRadius: clipShapeRadius,
+                        style: .continuous)
+                )
                 .shadow(radius: shadowRadius)
-            }
+            }.padding(.horizontal)
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(BlurEffect().blur(radius: blurEffectRadius))
