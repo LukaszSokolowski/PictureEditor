@@ -10,7 +10,7 @@ import PhotosUI
 import TipKit
 
 struct MainView: View {
-    @State private var originalImage = UIImage(imageLiteralResourceName: "RockyTheDoge")
+    @State private var originalImage = UIImage(imageLiteralResourceName: "gpsTagged")
     @State private var processedImage: UIImage? {
         didSet {
             tipRuleSatisfied()
@@ -84,76 +84,78 @@ struct MainView: View {
         startPoint: .top, endPoint: .bottom)
     
     var body: some View {
-        ZStack {
-            VStack {
-                HStack {
-                    if processedImage != nil {
-                        Button {
-                            isRevertModalActive = true
-                        } label: {
-                            Image(systemName: Icons.revert)
-                                .symbolRenderingMode(.monochrome)
-                                .font(.system(size: UIConstants.iconSize))
-                                .foregroundColor(.black)
-                        }.padding(Padding.normal.rawValue)
+        NavigationStack {
+            ZStack {
+                VStack {
+                    HStack {
+                        if processedImage != nil {
+                            Button {
+                                isRevertModalActive = true
+                            } label: {
+                                Image(systemName: Icons.revert)
+                                    .symbolRenderingMode(.monochrome)
+                                    .font(.system(size: UIConstants.iconSize))
+                                    .foregroundColor(.black)
+                            }.padding(Padding.normal.rawValue)
+                        }
+                        Spacer()
+                        if let imageData {
+                            NavigationLink(value: imageData) {
+                                Image(systemName: Icons.imageInfo)
+                                    .symbolRenderingMode(.monochrome)
+                                    .font(.system(size: UIConstants.iconSize))
+                                    .foregroundColor(.black)
+                            }
+                            .navigationDestination(for: Data.self) {
+                                ImageInfoView(model: .init(imageData: $0))
+                            }
+                        }
+                        PhotoPickerView(selection: $imageSelection)
+                            .onChange(of: imageSelection) { selectedItem in
+                                if let selectedItem {
+                                    handleTransferableDataFor(selectedItem)
+                                }
+                            }.padding(Padding.normal.rawValue)
+                        
+                    }
+                    VStack {
+                        if #available(iOS 17.0, *) {
+                            tipView
+                        }
+                        Image(uiImage: bottomContainerImage)
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                            .clipShape(.rect(cornerRadius: 4))
+                            .padding(Padding.small.rawValue)
+                            .pressAndReleaseAction(pressing: $pressesTheImage,
+                                                   onRelease: {
+                                tipActionPerformed()
+                            })
+                    }.task {
+                        if #available(iOS 17.0, *) {
+                            try? Tips.resetDatastore() //Only for testing
+                            try? Tips.configure([
+                                .displayFrequency(.immediate),
+                                .datastoreLocation(.applicationDefault)
+                            ])
+                        }
                     }
                     Spacer()
-                    if imageData != nil {
-                        NavigationLink(value: imageData) {
-                            Image(systemName: Icons.imageInfo)
-                                .symbolRenderingMode(.monochrome)
-                                .font(.system(size: UIConstants.iconSize))
-                                .foregroundColor(.black)
-                        }
-                        .navigationDestination(for: Data.self) { imageData in
-                            ImageInfoView(model: .init(imageData: imageData))
+                    VStack {
+                        mainActionsView
+                        PillButton(title: "Export image") {
+                            isExportModalActive = true
                         }
                     }
-                    PhotoPickerView(selection: $imageSelection)
-                        .onChange(of: imageSelection) { selectedItem in
-                            if let selectedItem {
-                                handleTransferableDataFor(selectedItem)
-                            }
-                        }.padding(Padding.normal.rawValue)
-                    
                 }
-                VStack {
-                    if #available(iOS 17.0, *) {
-                        tipView
-                    }
-                    Image(uiImage: bottomContainerImage)
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
-                        .clipShape(.rect(cornerRadius: 4))
-                        .padding(Padding.small.rawValue)
-                        .pressAndReleaseAction(pressing: $pressesTheImage,
-                                               onRelease: {
-                            tipActionPerformed()
-                        })
-                }.task {
-                    if #available(iOS 17.0, *) {
-                        try? Tips.resetDatastore() //Only for testing
-                        try? Tips.configure([
-                            .displayFrequency(.immediate),
-                            .datastoreLocation(.applicationDefault)
-                        ])
-                    }
+                .background(Color(uiColor: .background))
+                
+                if isRevertModalActive {
+                    revertChangesView
                 }
-                Spacer()
-                VStack {
-                    mainActionsView
-                    PillButton(title: "Export image") {
-                        isExportModalActive = true
-                    }
+                if isExportModalActive {
+                    exportImageModalView
                 }
-            }
-            .background(Color(uiColor: .background))
-            
-            if isRevertModalActive {
-                revertChangesView
-            }
-            if isExportModalActive {
-                exportImageModalView
             }
         }
     }

@@ -97,11 +97,11 @@ struct ImageInfoView: View {
                 if let bodySerialNumber {
                     Text("Body serial number: " + bodySerialNumber)
                 }
-                //                PageView(pages: [PageOption(processedImage: processedImage),
-                //                                 PageOption(processedImage: processedImage),
-                //                                 PageOption(processedImage: processedImage)])
             }
         }
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .navigationTitle("Image Metadata")
+        .background(Color(uiColor: .background))
     }
 }
 
