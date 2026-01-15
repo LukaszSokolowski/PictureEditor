@@ -171,7 +171,7 @@ private extension MainView {
                     self.originalImage = UIImage(data: imageData)!
                     self.processedImage = originalImage
                 } else {
-                    print("No supported content type found.")
+                    print("No supported content type found!")
                 }
             case .failure(let error):
                 fatalError(error.localizedDescription)
